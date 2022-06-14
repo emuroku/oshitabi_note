@@ -1,0 +1,42 @@
+.container{
+    text-align: center;
+    padding: 10px;
+}
+
+.main_img{
+    margin: 0 0 40px 0;
+    border: 1px #666666 solid;
+    /* 幅が400未満のときに引き伸ばす */
+    width: 100%; 
+    max-width: 400px;
+}
+
+button{
+    width: 140px;
+}
+
+.input_birthday{
+    margin: 20px;
+}
+
+.submit{
+    margin: 40px;
+}
+
+.birthday{
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.birth_txt{
+    margin: 5px;
+}
+
+.copyright{
+    text-align: center;
+}
+
+.error_msg{
+    color: #FF0000;
+}

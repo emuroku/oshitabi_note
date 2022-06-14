@@ -1,0 +1,93 @@
+.container{
+    text-align: center;
+    padding: 20px;
+}
+
+.main_img{
+    margin: 0 0 40px 0;
+    border: 1px #666666 solid;
+    /* 幅が400未満のときに引き伸ばす */
+    width: 100%; 
+    max-width: 400px;
+}
+
+button{
+    width: 140px;
+}
+
+.result_animal{
+    margin: 40px 0;
+    font-size: 20px;
+}
+
+.result_player{
+    /* display: flex; */
+    margin-left: auto;
+    margin-right: auto;
+}
+.animal_img{
+        width: 320px;
+        height: 260px;
+        object-fit: cover; 
+        border: solid 4px #AAAAAA;
+}
+
+
+.submit{
+    margin: 40px;
+}
+
+.users_animal{
+    margin: 20px;
+    font-size: 24px;
+    color: #555555;
+}
+
+.player_team{
+    font-size: 16px;
+    margin: 14px 0;
+    text-align: left;
+}
+
+.player_name{
+    font-size: 24px;
+    text-align: left;
+    margin: 10px 0;
+}
+
+.player_type{
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.copyright{
+    text-align: center;
+}
+
+.share{
+    font-size: 18px;
+    vertical-align: middle;
+    padding: 20px 10px;
+    margin: 20px 0;
+}
+
+.player_info{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: 50%; */
+}
+
+.player_text_info{
+    width: 70%;
+    margin: 10px;
+}
+
+.team_img{
+    width: 30%;
+    margin: 10px;
+    text-align: right;
+    width: 90px;
+    height: 90px;
+    object-fit: cover; 
+}
