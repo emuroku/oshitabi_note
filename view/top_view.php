@@ -3,19 +3,12 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>あなたと相性が最強な野球選手診断</title>
+    <title>出張オリ姫会 in SAPPORO</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-    <meta property="og:url" content="http://npburanai.com/top.php" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="あなたと相性が最強な野球選手診断" />
-    <meta property="og:description" content="どうぶつ占いで、あなたと相性が最強の現役プロ野球選手を占います" />
-    <meta property="og:site_name" content="あなたと相性が最強な野球選手診断" />
-    <meta property="og:image" content="http://npburanai.com/assets/img/ogp/ogp.png" />
-    <meta name="twitter:card" content="summary_large_image" />
 </head>
 
 <body>
@@ -23,7 +16,7 @@
     <nav class="navbar navbar-expand-sm justify-content-center navbar-light bg-light">
         <!-- <a class="navbar-brand" href="top.php"> -->
         <div class="title">
-            <h2> あなたと相性が最強な野球選手診断 </h2>
+            <h2> 出張オリ姫会 in SAPPORO </h2>
         </div>
         <!-- </a> -->
     </nav>
