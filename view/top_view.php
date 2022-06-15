@@ -17,44 +17,29 @@
         <!-- <a class="navbar-brand" href="top.php"> -->
         <div class="title">
             <h2> 出張オリ姫会 in SAPPORO </h2>
+            <h3> </h3>
         </div>
         <!-- </a> -->
     </nav>
 
     <!-- container -->
     <div class="container">
-        <div class="col-12">
-            <h5><i class="fa-solid fa-pen-field"></i>どうぶつ占いで、あなたと相性が最強の現役プロ野球選手を占います</h3>
-                <!-- 入力フォーム -->
-                <div class="input_birthday">
-                    <form method="post" action="result.php">
-                        <!-- CSRF対策 -->
-                        <div class="form-group col-12">
-                            <p>生年月日を入力してください</p>
-                            <div class="birthday">
-                                <input type="number" class="form-control form-control-lg col-6" name="year" required min="1926" max="2030" id="year" placeholder value="1990">
-                                <p class="birth_txt"><label for="year">年</label></p>
-
-                                <input type="number" class="form-control form-control-lg col-3" name="month" required min="1" max="12" id="month" placeholder value="1">
-                                <p class="birth_txt"><label for="month">月</label></p>
-
-                                <input type="number" class="form-control form-control-lg col-3" name="day" required min="1" max="31" id="day" placeholder value="1">
-                                <p class="birth_txt"><label for="day">日</label></p>
-                            </div>
-                            <div class="error_msg">
-                                <?php 
-                                    if($error == 'true'){
-                                    print("存在しない日付は入力できません！");
-                                 }; ?>
-                            </div>
-                            <div class="submit"><button class="btn btn-primary" id="btn_submit">占う！</button></div>
-                        </div>
-                    </form>
+        <div class="col-12>
+            <h5><i class="fa-solid fa-user-group"></i></i>MEMBERS</h5>
+            <div class="row">
+                <div class="col-4" style="background:#FDC6C7;">
+                    <p>メンバー1</p>
                 </div>
-                <!-- Twitter投稿誘導 -->
+                <div class="col-4" style="background:#CBFFC8;">
+                    <p>メンバー2</p>
+                </div>
+                <div class="col-4" style="background:#C8C8C8;">
+                    <p>メンバー3</p>
+                </div>
+            </div>
         </div>
     </div>
-    </body>
+</body>
 <footer>
     <div class="copyright">
         <small>@ m610310</small>
