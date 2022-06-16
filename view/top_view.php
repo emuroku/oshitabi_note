@@ -56,7 +56,42 @@
         <div class="col"   style="background:#9BF;height:200px;">メンバー3</div>
     </div>
     <!-- 旅程 -->
-
+    <div class="card-deck mb-2 mt-5"> <!-- サムネール -->
+ 
+      <div class="card">
+        <div class="card-body">
+          <div class="caption">
+            <h4 class="card-title">羽田空港発</h4>
+            <p class="card-text"></p>
+            <div class="d-flex justify-content-center">
+              <button class="btn btn-secondary" data-toggle="modal" data-target="#"> <!-- モーダル -->
+                詳細を見る
+              </button>
+            </div>
+            <div class="modal fade" id="_">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">羽田空港発</h4>
+                    <button class="close" data-dismiss="modal">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <p class="mb-0 mr-3"></p>
+                    <button class="btn btn-secondary btn-sm" data-dismiss="modal">閉じる</button>
+                  </div>
+                </div>
+              </div>
+            </div> <!-- モーダル -->
+          </div>
+        </div>
+      </div>
+ 
+    </div>
     
     
 
