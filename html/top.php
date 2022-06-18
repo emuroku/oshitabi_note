@@ -11,17 +11,17 @@ require_once MODEL_PATH . 'functions.php';
 // session開始
 session_start();
 
-// 保存済みの結果ナンバーを履き
-unset($_SESSION['user_num']);
-
 // CSRF対策
 $token = get_csrf_token();
 
 // PDO取得
 $db = get_db_connect();
 
-// 存在しない日付入力フラグの確認
-$error = get_get('error');
+// トラベルid取得
+
+// 
+
+
 
 // topページのクライアントソースファイル読み込み
 include_once VIEW_PATH . 'top_view.php';
