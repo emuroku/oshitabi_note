@@ -11,6 +11,41 @@
     max-width: 400px;
 }
 
+.members{
+    padding: 25px;
+    margin-top: 30px;
+}
+
+.trim-image-to-circle {
+    border-radius: 50%;
+    width:  180px;
+    height: 180px;
+    border-radius: 50%;
+    background-position: left top;
+    border: 9px solid #F0D0E4; /* 枠線を付加 */
+    object-fit: cover; 
+}
+
+.travel_title{
+    text-align: left;
+    font-family: 'M PLUS 1', sans-serif;
+}
+
+.travel_title_schedule{
+    margin-top: 20px;
+}
+
+.travel_thumbnail{
+    width: 840px;
+    height: 360px;
+    object-fit: cover; 
+    margin: 30px;
+}
+
+.card_plans{
+    text-align: left;
+}
+
 button{
     width: 140px;
 }
