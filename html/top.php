@@ -19,9 +19,9 @@ $db = get_db_connect();
 
 // トラベルid取得
 
-// 
+// 参加メンバー情報を取得
 
-
+// 旅程情報を取得
 
 // topページのクライアントソースファイル読み込み
 include_once VIEW_PATH . 'top_view.php';
