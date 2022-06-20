@@ -18,8 +18,11 @@ $token = get_csrf_token();
 $db = get_db_connect();
 
 // トラベルid取得
+$travel_id = 0; // 一旦固定で。
 
 // 参加メンバー情報を取得
+$members_info = get_members_info($db, $travei_id);
+
 
 // 旅程情報を取得
 
