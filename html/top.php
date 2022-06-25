@@ -21,10 +21,12 @@ $db = get_db_connect();
 $travel_id = 0; // 一旦固定で。
 
 // 参加メンバー情報を取得
-$members_info = get_members_info($db, $travei_id);
+$members_info = get_members_info($db, $travel_id);
 
 
 // 旅程情報を取得
+$plans_info = get_plans_info($db, $travel_id);
+
 
 // topページのクライアントソースファイル読み込み
 include_once VIEW_PATH . 'top_view.php';
