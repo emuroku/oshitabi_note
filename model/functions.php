@@ -83,3 +83,35 @@ function get_table_list($dbh, $table_name)
     }
     return $data;
 }
+
+// 指定のテーブルから特定のカラムに指定のパラメータをもつ行の情報を配列で取得する
+function get_info_specific_id($dbh, $table_name, $col_name, $id){
+    
+    // SQL文作成
+    $sql = 'SELECT * FROM ' . $table_name 
+                            . ' WHERE ' . $col_name . "=" . $id . ';'; 
+    // var_dump($sql);
+    // SQL文を実行する準備
+    try {
+        $stmt = $dbh->prepare($sql);
+        // SQL文を実行
+        $stmt -> execute();
+        // レコードの取得
+        $data = $stmt->fetchAll();
+    } catch (PDOException $e){
+        throw $e;
+    }
+    return $data;
+}
+
+// POSTメソッドによりアップロードされたファイルの内容を返す。値が入っていない場合は空の配列を返す
+function get_file($name){
+    // _FILESに値がアップロードされている場合
+    if(isset($_FILES[$name]) === true){
+      // アップロードされた値を返す
+      return $_FILES[$name];
+    };
+    // _FILESに値がない場合は、空の配列を返す
+    return array();
+  }
+  
