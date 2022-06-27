@@ -58,6 +58,14 @@
     font-family: 'M PLUS 1', sans-serif;
 }
 
+.modal_profile{
+    text-align: left;
+}
+
+.modal-body{
+    display: flex;
+}
+
 .card_plans{
     display: flex;
     justify-content: space-between;
