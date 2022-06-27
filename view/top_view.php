@@ -58,7 +58,7 @@
                 <div class="col-<?php print($memberslist_col_num); ?>">
                   <div class="member_top_info">
                     <p><?php print($line[0]['member_name']); ?></p>
-                    <img src="<?php print(IMG_PATH . 'members/' . "kihyun_2.png"); ?>" class="trim-image-to-circle">
+                    <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                     <div class="button_profile">
                       <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">PROFILE
                     

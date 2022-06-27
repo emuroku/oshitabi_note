@@ -46,7 +46,7 @@
     <p>メンバーを追加する</p>
     <!-- 入力フォーム -->
     <div class="">
-                    <form method="post" action="../html/form_add_member.php">
+                    <form method="post" action="../html/form_add_member.php" enctype="multipart/form-data">
                         <!-- CSRF対策 -->
                         <div class="form-group col-12">
                             <div class="name">名前

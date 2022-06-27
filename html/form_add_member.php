@@ -17,7 +17,7 @@ $travel_id = 1;
 
 // 送信されたパラメータを入れる変数の宣言
 $new_member_name = ''; 
-$new_member_sumbnail = ''; 
+$new_member_thumbnail = ''; 
 $new_member_blood_type = ''; 
 $new_member_favorite = ''; 
 
@@ -37,22 +37,39 @@ try {
 
         // 入力値を変数に代入
         $new_member_name = $_POST['name'];
-        $new_member_thumbnail = $_POST['img'];
+        // $new_member_thumbnail = $_POST['img']; // 画像は別途処理
         $new_member_blood_type = $_POST['blood_type'];
         $new_member_favorite = $_POST['favorite'];
-        // member_profileテーブルへ書き込み処理
-        insert_member_profile($dbh, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
-            
-        // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
-        $added_member_id_array = get_added_member_id($dbh);
-        $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
 
-        // membersテーブルへtravel_idと紐づけて登録
-        insert_member($dbh, $travel_id, $added_member_id);
+        // -------画像のアップロード---------
+        $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
+        $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
+        print($image);
+        $file = '../html/assets/img/members/' . $new_member_thumbnail;
+        if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
+            print('upload');
+            move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
+            if (exif_imagetype($file)) {//画像ファイルかのチェック
+                $message = '画像をアップロードしました';
+            } else {
+                $message = '画像ファイルではありません';
+            }
 
-        // コミット処理
-        $dbh -> commit();
-        $insert_result = true; // 登録完了フラグをTRUEにする
+            // -------ここまで画像アップロード処理--------
+
+
+            // member_profileテーブルへ書き込み処理
+            insert_member_profile($dbh, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
+            // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
+            $added_member_id_array = get_added_member_id($dbh);
+            $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
+
+            // membersテーブルへtravel_idと紐づけて登録
+            insert_member($dbh, $travel_id, $added_member_id);
+            // コミット処理
+            $dbh -> commit();
+            $insert_result = true; // 登録完了フラグをTRUEにする
+        }
     }
     } catch (PDOException $e) {
                 
