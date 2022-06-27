@@ -38,8 +38,22 @@ $memberslist_col_num = calc_memberslist_col_num($members_num);
 // 旅程情報を取得
 $plans_info = get_plans_info($db, $travel_id);
 
-// 旅程表示用：日程数を取得
+// REQUEST_METHODで削除オーダーを受け取る
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    print('order');
+    if (isset($_POST['sql_order']) === TRUE) {
+        $sql_order = $_POST['sql_order'];
+        
+    }
 
+    // planを削除する場合
+    if ($sql_order === 'delete_plan') {
+        $delete_plan_id = $_POST['delete_id'];
+        delete_plan($dbh, $delete_plan_id);
+        $dialog = 'プランを削除しました';
+    }
+    
+}
 
 // topページのクライアントソースファイル読み込み
 include_once VIEW_PATH . 'top_view.php';

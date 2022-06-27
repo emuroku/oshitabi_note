@@ -107,3 +107,16 @@ function get_plans_info($dbh, $travel_id){
      // var_dump($data);
      return $data;
  }
+
+ // 指定したidのplanをカートから削除する
+function delete_plan($dbh, $plan_id)
+{
+    // SQL文を作成
+    $sql = 'DELETE FROM 03_plans WHERE id = ?';
+    // SQL文を実行する準備
+    $stmt = $dbh->prepare($sql);
+    // SQL文のプレースホルダに値をバインド
+    $stmt->bindValue(1, $plan_id, PDO::PARAM_INT);
+    // SQLを実行
+    $stmt->execute();
+}
