@@ -53,7 +53,6 @@
         </div>
     
     <!-- サムネイル     -->
-     <!-- <img src="<?php print(IMG_PATH . 'thumbnail/' . $user_result['animal'] . '.png'); ?>" class="animal_img"> -->
      <img src="<?php print(IMG_PATH . '/thumbnail/' . "buffapon.jpg"); ?>" class="travel_thumbnail">
 
      <!-- メンバー -->
@@ -68,28 +67,35 @@
                     <p><?php print($line[0]['member_name']); ?></p>
                     <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                     <div class="button_profile">
-                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">PROFILE
+                    <!-- <button class="btn btn-info" data-toggle="modal" data-target="#modal1">PROFILE</button> -->
+                    <?php print('<button class="btn btn-info" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                    <?php print('<div class="modal fade" id="modal' . $line[0]['member_id'].'"'); ?>>
                     
-                      <!-- メンバープロフィール モーダル
-                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                              </button>
+                    <!-- <div class="modal fade" id="modal1"> -->
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title">PROFILE</h3>
+                                    <button class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div class="modal_profile col-6">
+                                    <h4><?php print($line[0]['member_name']); ?></h4>
+                                    <p><?php print('Blood Type: ' . $line[0]['blood_type']); ?></p>
+                                    <p><?php print('推し: ' . $line[0]['favorite']); ?></p>
+                                  </div>
+                                  <div class="modal_profile_thumbnail">
+                                  <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                              ...
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                          </div>
                         </div>
-                      </div> -->
+                    </div>
                     </div>
                 </div>
               </div>
