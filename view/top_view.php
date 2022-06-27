@@ -3,11 +3,13 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>出張オリ姫会 in SAPPORO</title>
+    <title>推し旅note</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     
+    <!-- オフライン時作業用 -->
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'top.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
     
@@ -34,10 +36,10 @@
     <div class="container">
         <div class="jumbotron">
           <div class="travel_title">
-            <h3>出張オリ姫会 in SAPPORO★2022</h3>
+            <h3><?php print($travel_info[0]['travel_name']); ?></h3>
 
             <div class="travel_title_schedule">
-              <h5> 2022/7/1 ~ 7/3 </h5>
+              <h5><?php print($travel_info[0]['start_date'] . ' ~ ' . $travel_info[0]['end_date']); ?></h5>
             </div>
           </div>
         </div>
@@ -51,22 +53,44 @@
       <div class="col-12">
         <h4>MEMBERS</h4>
             <div class="row">
-                <div class="col-4">
-                    <p>ベルちゃん</p>
-                    <img src="<?php print(IMG_PATH . 'members/' . "belltaso.jpg"); ?>" class="trim-image-to-circle">
-                </div>
-                <div class="col-4">
-                    <p>KH</p>
+              <?php foreach($members_info as $line){
+              ?>
+                <div class="col-<?php print($memberslist_col_num); ?>">
+                  <div class="member_top_info">
+                    <p><?php print($line[0]['member_name']); ?></p>
                     <img src="<?php print(IMG_PATH . 'members/' . "kihyun_2.png"); ?>" class="trim-image-to-circle">
+                    <div class="button_profile">
+                      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#exampleModal">PROFILE
+                    
+                      <!-- メンバープロフィール モーダル
+                      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              ...
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+                    </div>
                 </div>
-                <div class="col-4">
-                    <p>バファ子</p>
-                    <img src="<?php print(IMG_PATH . 'members/' . "flower.jpg"); ?>" class="trim-image-to-circle">
-                </div>
-            </div>
-        </div>
+              </div>
+              <?php } ?>
+           </div>
+            <!-- メンバー追加ボタン -->
+            <a href="form_add_member.php"><button type="button" class="btn btn-primary" >Add Member</button></a>
+      </div>
      </div>
-
     <!-- navigation -->
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="collapse navbar-collapse" id="mainNav">
@@ -81,73 +105,52 @@
 
   
     <!-- 旅程 -->
+    <?php for($day_num = 1; $day_num <= $days; $day_num++){ ?>
       <div class="card">
-        <div class="card-body">
-          <div class="caption">
-            <div class="card_plans">
-            <h4 class="card-title">11:00 AM 羽田空港発</h4>
-            <p class="card-link"></p>
-            <div class="modal fade" id="_">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title">11:00 AM 羽田空港発</h4>
-                    <button class="close" data-dismiss="modal">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <p class="mb-0 mr-3"></p>
-                    <button class="btn btn-secondary btn-sm" data-dismiss="modal">閉じる</button>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- モーダル -->
+        <div class="card-header bg-secondary">
+          <div class="plan_day_header">
+            <?php print('Day-' . $day_num); ?>
           </div>
         </div>
-        </div>
-      </div>
-      
-      <div class="card">
-        <div class="card-body">
-          <div class="caption">
-            <div class="card_plans">
-            <h4 class="card-title">13:00 PM ホテルチェックイン</h4>
-            <p class="card-link"></p>
-            <div class="modal fade" id="_">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h4 class="modal-title">11:00 AM 羽田空港発</h4>
-                    <button class="close" data-dismiss="modal">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    
-                  </div>
-                  <div class="modal-footer">
-                    <p class="mb-0 mr-3"></p>
-                    <button class="btn btn-secondary btn-sm" data-dismiss="modal">閉じる</button>
-                  </div>
-                </div>
-              </div>
-            </div> <!-- モーダル -->
-          </div>
-        </div>
-        </div>
-      </div>
-
-    
-    
-
-
-
-        
     </div>
+    <?php foreach ($plans_info as $plan) {
+        // 該当の日程のプランであれば出力
+        if ($plan['day_num'] == $day_num) {
+            ?>
+        <div class="card-body">
+          <div class="caption">
+            <div class="card_plans">
+              <h4><?php print($plan['start_time']); ?></h4>
+              <h4><?php print($plan['plan_name']); ?></h4>
+
+              <div>
+              <!-- リンクボタン -->
+              <a href="<?php print($plan['plan_url']); ?>">
+                <button type="button" class="btn btn-info"
+                            <?php if ($plan['plan_url'] =='') {
+                print('disabled');
+                }; ?>>Link
+                </button>
+              </a>
+              <!-- plan削除ボタン -->
+                <button type="button" class="btn btn-outline-danger rounded-circle p-0" style="width:2rem;height:2rem;">-
+                <form method = "post">
+                    <input type = "hidden" name = "sql_order" value = "delete">
+                    <input type = "hidden" name = "delete_id" value = "<?php print $plan['plan_id']; ?>"> <!-- 削除するidを送信する -->
+                </form>
+                </button>
+            </div>
+            </div>
+        </div>
+        </div>
+    <?php
+        }
+    }
+  }
+    ?>
+  <!-- 旅程追加ボタン -->
+  <a href="form_add_plan.php"><button type="button" class="btn btn-primary" >Add Plan</button></a>
+
 </body>
 <footer>
     <div class="copyright">

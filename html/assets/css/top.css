@@ -16,6 +16,14 @@
     margin-top: 30px;
 }
 
+.member_top_info{
+    margin: 10px;
+}
+
+.button_profile{
+    margin: 10px;
+}
+
 .trim-image-to-circle {
     border-radius: 50%;
     width:  180px;
@@ -24,6 +32,7 @@
     background-position: left top;
     border: 9px solid #F0D0E4; /* 枠線を付加 */
     object-fit: cover; 
+    margin: 10px;
 }
 
 .travel_title{
@@ -42,8 +51,17 @@
     margin: 30px;
 }
 
-.card_plans{
+.plan_day_header{
+    padding: 0 10px;
     text-align: left;
+    color: #FFFFFF;
+    font-family: 'M PLUS 1', sans-serif;
+}
+
+.card_plans{
+    display: flex;
+    justify-content: space-between;
+    font-family: 'M PLUS 1', sans-serif;
 }
 
 button{
