@@ -67,19 +67,21 @@
                     <p><?php print($line[0]['member_name']); ?></p>
                     <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                     <div class="button_profile">
-                    <!-- <button class="btn btn-info" data-toggle="modal" data-target="#modal1">PROFILE</button> -->
-                    <?php print('<button class="btn btn-light" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                      <?php print('<button class="btn btn-light" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                    </div>
                     <?php print('<div class="modal fade" id="modal' . $line[0]['member_id'].'"'); ?>>
-                    
-                    <!-- <div class="modal fade" id="modal1"> -->
                         <div class="modal-dialog">
                             <div class="modal-content">
+                              <!-- Profile Modal ヘッダ -->
                                 <div class="modal-header">
                                     <h3 class="modal-title">PROFILE</h3>
                                     <button class="close" data-dismiss="modal">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+                                <!-- Profile Modal ヘッダここまで -->
+
+                                <!-- Profile Modal Body -->
                                 <div class="modal-body">
                                   <div class="modal_profile col-6">
                                     <h4><?php print($line[0]['member_name']); ?></h4>
@@ -90,16 +92,20 @@
                                   <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                                   </div>
                                 </div>
+                                <!-- Profile Modal Body ここまで-->
+
+                                <!-- Profile Modal フッタ -->
                                 <div class="modal-footer">
                                   <!-- メンバー削除ボタン -->
-                                <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+                                  <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
                                     style="width:2rem;height:2rem;" data-toggle="modal" 
                                     data-target="#modal-member-del' . $line[0]['member_id'] . '">-</button>'); ?>
                                     <button class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
-                                  <!-- ここまで - ボタン -->
-                                  <!-- ここからメンバー削除確認ダイアログ -->
-                                    <?php print('<div class="modal fade" id="modal-member-del' . $line[0]['member_id'] . '">'); ?>
+                                 <!-- Profile Modal フッタ ここまで -->
+                                 
+                                 <!-- ここからメンバー削除確認ダイアログ -->
+                                  <?php print('<div class="modal fade" id="modal-member-del' . $line[0]['member_id'] . '">'); ?>
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -121,16 +127,60 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- ここまでMember削除確認Modal -->
                             </div>
+                            <!-- ここまでModal Content -->
                         </div>
-                    </div>
-                    </div>
+                        <!-- ここまでModal Dialog -->
+                  </div>
+                  <!-- ここまでModal Fade -->
+                  </div>
+                  </div>
+                  <?php } ?>                  
                 </div>
-              </div>
-              <?php } ?>
-           </div>
+            
             <!-- メンバー追加ボタン -->
-            <a href="form_add_member.php"><button type="button" class="btn btn-primary" >Add Member</button></a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addmember">Add Member</button>
+            <!-- メンバー追加Modalフォーム -->
+            <div class="modal fade" id="modal_addmember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">メンバーを追加する</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="name" class="col-form-label">名前</label>
+                        <input type="text" class="form-control" id="name">
+                      </div>
+                      <div class="add_member_thumbnail">サムネイル
+                        <input type="file" name="img">
+                      </div>
+                      <div class="form-group">推し
+                        <input type="text" class="form-control form-control-lg" name="favorite">
+                      </div>
+                      <div class="form-group">血液型
+                        <select name="blood_type">
+                          <option value="A">A</option>
+                          <option value="B">B</option>
+                          <option value="O">O</option>
+                          <option value="AB">AB</option>
+                          <option value="不明">不明</option>            
+                        </select>
+                      </div>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Send message</button>
+                  </div>
+                </div>
+            </div>
       </div>
      </div>
     <!-- navigation -->
