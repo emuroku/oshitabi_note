@@ -68,7 +68,7 @@
                     <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                     <div class="button_profile">
                     <!-- <button class="btn btn-info" data-toggle="modal" data-target="#modal1">PROFILE</button> -->
-                    <?php print('<button class="btn btn-info" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                    <?php print('<button class="btn btn-light" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
                     <?php print('<div class="modal fade" id="modal' . $line[0]['member_id'].'"'); ?>>
                     
                     <!-- <div class="modal fade" id="modal1"> -->
@@ -146,13 +146,32 @@
                 }; ?>>Link
                 </button>
               </a>
-              <!-- plan削除ボタン -->
-                <button type="button" class="btn btn-outline-danger rounded-circle p-0" style="width:2rem;height:2rem;">-
-                <form method = "post">
-                    <input type = "hidden" name = "sql_order" value = "delete">
-                    <input type = "hidden" name = "delete_id" value = "<?php print $plan['plan_id']; ?>"> <!-- 削除するidを送信する -->
-                </form>
-                </button>
+              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+              style="width:2rem;height:2rem;" data-toggle="modal" 
+              data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
+ 
+              <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
+                  <div class="modal-dialog">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h3 class="modal-title">プランを削除</h3>
+                              <button class="close" data-dismiss="modal">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              このプランを削除していいですか？
+                          </div>
+                          <div class="modal-footer">
+                             <form method = "post">
+                               <input type="submit" value="OK" button class="btn btn-primary">
+                               <input type = "hidden" name = "sql_order" value = "delete_plan">
+                               <input type = "hidden" name = "delete_id" value = "<?php print($plan['plan_id']); ?>">
+                             </form>
+                          </div>
+                      </div>
+                  </div>
+              </div>
             </div>
             </div>
         </div>
