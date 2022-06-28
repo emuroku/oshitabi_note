@@ -10,6 +10,8 @@ require_once MODEL_PATH . 'functions.php';
 // TOPページ用関数ファイル読み込み
 require_once MODEL_PATH . 'top.php';
 
+$delete_plan_id = 0; // plan削除実行用の変数を用意
+
 // session開始
 session_start();
 
@@ -27,6 +29,23 @@ $travel_info = get_travel_info($db, $travel_id);
 // 日程数を取得
 $days = $travel_info[0]['days'];
 
+// REQUEST_METHODで削除オーダーを受け取る
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['sql_order']) === TRUE) {
+        $sql_order = $_POST['sql_order'];
+        
+    }
+
+    // planを削除する場合
+    if ($sql_order === 'delete_plan') {
+        $delete_plan_id = $_POST['delete_id'];
+        delete_plan($db, $delete_plan_id);
+        $dialog = 'プランを削除しました';
+        
+    }
+    
+}
+
 // 参加メンバー情報を取得
 $members_info = get_members_info($db, $travel_id);
 // var_dump($members_info);
@@ -37,23 +56,6 @@ $memberslist_col_num = calc_memberslist_col_num($members_num);
 
 // 旅程情報を取得
 $plans_info = get_plans_info($db, $travel_id);
-
-// REQUEST_METHODで削除オーダーを受け取る
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    print('order');
-    if (isset($_POST['sql_order']) === TRUE) {
-        $sql_order = $_POST['sql_order'];
-        
-    }
-
-    // planを削除する場合
-    if ($sql_order === 'delete_plan') {
-        $delete_plan_id = $_POST['delete_id'];
-        delete_plan($dbh, $delete_plan_id);
-        $dialog = 'プランを削除しました';
-    }
-    
-}
 
 // topページのクライアントソースファイル読み込み
 include_once VIEW_PATH . 'top_view.php';

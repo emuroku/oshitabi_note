@@ -112,7 +112,7 @@ function get_plans_info($dbh, $travel_id){
 function delete_plan($dbh, $plan_id)
 {
     // SQL文を作成
-    $sql = 'DELETE FROM 03_plans WHERE id = ?';
+    $sql = 'DELETE FROM 03_plans WHERE plan_id = ?';
     // SQL文を実行する準備
     $stmt = $dbh->prepare($sql);
     // SQL文のプレースホルダに値をバインド

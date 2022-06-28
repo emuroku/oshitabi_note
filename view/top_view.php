@@ -146,9 +146,11 @@
                 }; ?>>Link
                 </button>
               </a>
-              <button type="button" class="btn btn-danger rounded-circle p-0" style="width:2rem;height:2rem;" data-toggle="modal" data-target="#modal1">-</button>
+              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+              style="width:2rem;height:2rem;" data-toggle="modal" 
+              data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
  
-              <div class="modal fade" id="modal1">
+              <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
                   <div class="modal-dialog">
                       <div class="modal-content">
                           <div class="modal-header">
@@ -161,23 +163,15 @@
                               このプランを削除していいですか？
                           </div>
                           <div class="modal-footer">
-                              <form method = "post">
-                              <input type="submit" value="OK" button class="btn btn-primary" data-dismiss="modal">
+                             <form method = "post">
+                               <input type="submit" value="OK" button class="btn btn-primary">
                                <input type = "hidden" name = "sql_order" value = "delete_plan">
-                               <input type = "hidden" name = "delete_id" value = "<?php print $plan['plan_id']; ?>">
+                               <input type = "hidden" name = "delete_id" value = "<?php print($plan['plan_id']); ?>">
                              </form>
                           </div>
                       </div>
                   </div>
               </div>
-
-              <!-- plan削除ボタン -->
-                <!-- <button type="button" class="btn btn-danger rounded-circle p-0" style="width:2rem;height:2rem;">-
-                <form method = "post">
-                    <input type = "hidden" name = "sql_order" value = "delete">
-                    <input type = "hidden" name = "delete_id" value = "<?php print $plan['plan_id']; ?>">
-                </form> -->
-                <!-- </button> -->
             </div>
             </div>
         </div>
