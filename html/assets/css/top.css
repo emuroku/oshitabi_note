@@ -66,6 +66,11 @@
     display: flex;
 }
 
+.modal-footer{
+    display: flex;
+    justify-content: space-between;
+}
+
 .card_plans{
     display: flex;
     justify-content: space-between;

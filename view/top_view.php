@@ -91,7 +91,35 @@
                                   </div>
                                 </div>
                                 <div class="modal-footer">
+                                  <!-- メンバー削除ボタン -->
+                                <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+                                    style="width:2rem;height:2rem;" data-toggle="modal" 
+                                    data-target="#modal-member-del' . $line[0]['member_id'] . '">-</button>'); ?>
                                     <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                </div>
+                                  <!-- ここまで - ボタン -->
+                                  <!-- ここからメンバー削除確認ダイアログ -->
+                                    <?php print('<div class="modal fade" id="modal-member-del' . $line[0]['member_id'] . '">'); ?>
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title">メンバーを削除</h3>
+                                                <button class="close" data-dismiss="modal">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                このメンバーを削除していいですか？
+                                            </div>
+                                            <div class="modal-footer">
+                                              <form method = "post">
+                                                <input type="submit" value="OK" button class="btn btn-primary">
+                                                <input type = "hidden" name = "sql_order" value = "delete_member">
+                                                <input type = "hidden" name = "delete_id" value = "<?php print($line[0]['member_id']); ?>">
+                                              </form>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
