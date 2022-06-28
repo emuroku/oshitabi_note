@@ -42,6 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         delete_plan($db, $delete_plan_id);
         $dialog = 'プランを削除しました';
         
+    } else if($sql_order === 'delete_member'){
+        // memberを削除する場合
+        $delete_member_id = $_POST['delete_id'];
+        delete_member($db, $delete_member_id);
     }
     
 }

@@ -108,7 +108,7 @@ function get_plans_info($dbh, $travel_id){
      return $data;
  }
 
- // 指定したidのplanをカートから削除する
+ // 指定したidのplanを03_planテーブルから削除する
 function delete_plan($dbh, $plan_id)
 {
     // SQL文を作成
@@ -120,3 +120,27 @@ function delete_plan($dbh, $plan_id)
     // SQLを実行
     $stmt->execute();
 }
+
+ // 指定したidのmemberを03_membersおよび03_member_profilesテーブルから削除する
+ function delete_member($dbh, $member_id)
+ {
+    // member_profilesテーブルからプロフィールレコードを削除
+     // SQL文を作成
+     $sql = 'DELETE FROM 03_member_profiles WHERE member_id = ?';
+     // SQL文を実行する準備
+     $stmt = $dbh->prepare($sql);
+     // SQL文のプレースホルダに値をバインド
+     $stmt->bindValue(1, $member_id, PDO::PARAM_INT);
+     // SQLを実行
+     $stmt->execute();
+
+     // membersテーブルからmemberとtravelの紐付けレコードを削除
+     // SQL文を作成
+     $sql = 'DELETE FROM 03_members WHERE member_id = ?';
+     // SQL文を実行する準備
+     $stmt = $dbh->prepare($sql);
+     // SQL文のプレースホルダに値をバインド
+     $stmt->bindValue(1, $member_id, PDO::PARAM_INT);
+     // SQLを実行
+     $stmt->execute();
+ }
