@@ -170,8 +170,8 @@
                                 <option value="O">O</option>
                                 <option value="AB">AB</option>
                                 <option value="不明">不明</option>            
-                               </select>
-                              </div>
+                                </select>
+                            </div>
                       </div>
               </div>
                   <div class="modal-footer">
@@ -214,7 +214,29 @@
           <div class="caption">
             <div class="card_plans">
               <h4><?php print($plan['start_time']); ?></h4>
-              <h4><?php print($plan['plan_name']); ?></h4>
+              <h4>
+                <!-- categoryに応じたアイコン表示  -->
+              <?php if($plan['plan_category'] == 1){ 
+                print('<i class="fas fa-plane"></i>');
+              }else if($plan['plan_category'] == 2){ 
+                print('<i class="fas fa-monument"></i>');
+              }else if($plan['plan_category'] == 3){ 
+                print('<i class="fas fa-utensils"></i>');
+              }else if($plan['plan_category'] == 4){ 
+                print('<i class="fas fa-bed"></i>');
+              }else if($plan['plan_category'] == 5){ 
+                print('<i class="fas fa-shopping-bag"></i>');
+              }else if($plan['plan_category'] == 6){ 
+                print('<i class="fas fa-baseball-ball"></i>');
+              }else if($plan['plan_category'] == 7){ 
+                print('<i class="fas fa-music"></i>');
+              }else if($plan['plan_category'] == 8){ 
+                print('<i class="fas fa-kiss-wink-heart"></i>');
+              }else if($plan['plan_category'] == 9){ 
+                print('<i class="fas fa-synagogue"></i>');
+              } ?>
+
+              <?php print($plan['plan_name']); ?></h4>
 
               <div>
               <!-- リンクボタン -->
@@ -261,8 +283,66 @@
   }
     ?>
   <!-- 旅程追加ボタン -->
-  <a href="form_add_plan.php"><button type="button" class="btn btn-primary" >Add Plan</button></a>
-
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addplan">Add Plan</button>
+  <!-- メンバー追加Modalフォーム -->
+  <div class="modal fade" id="modal_addplan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">プランを追加する</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group col-12">
+                            <div>  
+                            <select name="day_num">
+                            <?php for($i=1; $i<=$days; $i++){
+                            ?>
+                                <option value="<?php print($i);?>"><?php print($i) . '日目';?></option>
+                            <?php
+                            } ?>
+                                </select>
+                            </div>
+                            <div class="name">タイトル
+                                <input type="text" class="form-control form-control-lg" name="title">
+                            </div>
+                            <div>カテゴリ
+                            <select name="category">
+                                <option value="1">移動</option>
+                                <option value="2">観光</option>
+                                <option value="3">食事</option>
+                                <option value="4">宿泊</option>
+                                <option value="5">ショッピング</option>
+                                <option value="6">試合</option>            
+                                <option value="7">ライブ</option>            
+                                <option value="8">ファンミ</option>            
+                                <option value="9">聖地巡礼</option>            
+                                <option value="10">そのほか</option>            
+                            </select>
+                            </div>
+                            <div class="name">開始時間
+                                <input type="datetime-local" class="form-control form-control-lg" name="start_time">
+                            </div>
+                            <div class="name">終了時間
+                                <input type="datetime-local" class="form-control form-control-lg" name="end_time">
+                            </div>
+                            <div class="name">サイトリンク
+                                <input type="text" class="form-control form-control-lg" name="url">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
+                    <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
+                    <input type = "hidden" name = "sql_order" value = "add_plan">
+                    </div>
+                  </form>
+                </div>
+              </div>
+  </div>
 </body>
 <footer>
     <div class="copyright">

@@ -15,6 +15,13 @@ require_once MODEL_PATH . 'add_info.php';
 
 $delete_plan_id = 0; // plan削除実行用の変数を用意
 
+// AddPlanで送信されたパラメータを入れる変数の宣言
+$new_plan_title = ''; 
+$new_plan_cateory = ''; 
+$new_plan_start_time = ''; 
+$new_plan_end_time = ''; 
+$new_plan_day_num = ''; 
+
 // session開始
 session_start();
 
@@ -75,6 +82,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (PDOException $e) {
                         
             // ロールバック処理
+            echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
+            $db -> rollback();
+            // 例外をスロー
+            throw $e;
+        }
+        // ----------ここまでトランザクション処理----------
+    }
+
+    // 既存レコードの操作オーダーを受け取った場合の処理
+    elseif (isset($_POST['sql_order']) === true) {
+        $sql_order = $_POST['sql_order'];
+
+        // Plan追加
+        if ($sql_order === 'add_plan') {
+            // DBへ接続
+            $db -> beginTransAction();
+            try {
+                // 入力値を変数に代入
+                $new_plan_title = $_POST['title'];
+                $new_plan_cateory = $_POST['category'];
+                $new_plan_day_num = $_POST['day_num'];
+                $new_plan_start_time = $_POST['start_time'];
+                $new_plan_end_time = $_POST['end_time'];
+                $new_plan_url = $_POST['url'];
+
+                // member_profileテーブルへ書き込み処理
+                insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
+
+                // コミット処理
+                $db -> commit();
+                $insert_result = true; // 登録完了フラグをTRUEにする
+            } catch (PDOException $e) {
+                        
+                        // ロールバック処理
                 echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
                 $db -> rollback();
                 // 例外をスロー
@@ -82,22 +123,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             // ----------ここまでトランザクション処理----------
         }
-
-        // 既存レコードの操作オーダーを受け取った場合の処理
-        else if (isset($_POST['sql_order']) === true) {
-                $sql_order = $_POST['sql_order'];
-            // planを削除する場合
-            if ($sql_order === 'delete_plan') {
-                $delete_plan_id = $_POST['delete_id'];
-                delete_plan($db, $delete_plan_id);
-                $dialog = 'プランを削除しました';
-            } elseif ($sql_order === 'delete_member') {
-                // memberを削除する場合
-                $delete_member_id = $_POST['delete_id'];
-                delete_member($db, $delete_member_id);
-            }
-        } 
- }
+        // planを削除する場合
+        elseif ($sql_order === 'delete_plan') {
+            $delete_plan_id = $_POST['delete_id'];
+            delete_plan($db, $delete_plan_id);
+            $dialog = 'プランを削除しました';
+        } elseif ($sql_order === 'delete_member') {
+            // memberを削除する場合
+            $delete_member_id = $_POST['delete_id'];
+            delete_member($db, $delete_member_id);
+        }
+    }
+}
 
 // 参加メンバー情報を取得
 $members_info = get_members_info($db, $travel_id);
