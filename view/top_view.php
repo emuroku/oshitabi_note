@@ -16,7 +16,7 @@
     
     <!-- オフライン時作業用 -->
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'top.css'); ?>">
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
     
     <!-- Modal -->
@@ -140,7 +140,9 @@
                 </div>
             
             <!-- メンバー追加ボタン -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addmember">Add Member</button>
+            <div class="add_member">
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addmember">Add Member</button>
+            </div>
             <!-- メンバー追加Modalフォーム -->
             <div class="modal fade" id="modal_addmember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -344,9 +346,9 @@
               </div>
   </div>
 </body>
-<footer>
+<!-- <footer>
     <div class="copyright">
         <small>@ m610310</small>
     </div>
-</footer>
+</footer> -->
 </html>
