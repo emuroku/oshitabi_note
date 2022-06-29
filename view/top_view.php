@@ -344,9 +344,9 @@
               </div>
   </div>
 </body>
-<footer>
+<!-- <footer>
     <div class="copyright">
         <small>@ m610310</small>
     </div>
-</footer>
+</footer> -->
 </html>

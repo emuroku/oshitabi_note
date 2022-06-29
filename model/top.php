@@ -89,7 +89,7 @@ function get_plans_info($dbh, $travel_id){
 
     // 取得したデータをday_num（何日目の旅程か）でソート
         // 並び替えの基準を取得
-    $data = sort_plans($data);
+    // $assorted_data = sort_plans($data);
 
     return $data;
 }
