@@ -67,19 +67,21 @@
                     <p><?php print($line[0]['member_name']); ?></p>
                     <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                     <div class="button_profile">
-                    <!-- <button class="btn btn-info" data-toggle="modal" data-target="#modal1">PROFILE</button> -->
-                    <?php print('<button class="btn btn-light" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                      <?php print('<button class="btn btn-light" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                    </div>
                     <?php print('<div class="modal fade" id="modal' . $line[0]['member_id'].'"'); ?>>
-                    
-                    <!-- <div class="modal fade" id="modal1"> -->
                         <div class="modal-dialog">
                             <div class="modal-content">
+                              <!-- Profile Modal ヘッダ -->
                                 <div class="modal-header">
                                     <h3 class="modal-title">PROFILE</h3>
                                     <button class="close" data-dismiss="modal">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+                                <!-- Profile Modal ヘッダここまで -->
+
+                                <!-- Profile Modal Body -->
                                 <div class="modal-body">
                                   <div class="modal_profile col-6">
                                     <h4><?php print($line[0]['member_name']); ?></h4>
@@ -90,16 +92,20 @@
                                   <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                                   </div>
                                 </div>
+                                <!-- Profile Modal Body ここまで-->
+
+                                <!-- Profile Modal フッタ -->
                                 <div class="modal-footer">
                                   <!-- メンバー削除ボタン -->
-                                <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+                                  <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
                                     style="width:2rem;height:2rem;" data-toggle="modal" 
                                     data-target="#modal-member-del' . $line[0]['member_id'] . '">-</button>'); ?>
                                     <button class="btn btn-primary" data-dismiss="modal">Close</button>
                                 </div>
-                                  <!-- ここまで - ボタン -->
-                                  <!-- ここからメンバー削除確認ダイアログ -->
-                                    <?php print('<div class="modal fade" id="modal-member-del' . $line[0]['member_id'] . '">'); ?>
+                                 <!-- Profile Modal フッタ ここまで -->
+                                 
+                                 <!-- ここからメンバー削除確認ダイアログ -->
+                                  <?php print('<div class="modal fade" id="modal-member-del' . $line[0]['member_id'] . '">'); ?>
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -121,16 +127,61 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- ここまでMember削除確認Modal -->
                             </div>
+                            <!-- ここまでModal Content -->
                         </div>
-                    </div>
-                    </div>
+                        <!-- ここまでModal Dialog -->
+                  </div>
+                  <!-- ここまでModal Fade -->
+                  </div>
+                  </div>
+                  <?php } ?>                  
                 </div>
-              </div>
-              <?php } ?>
-           </div>
+            
             <!-- メンバー追加ボタン -->
-            <a href="form_add_member.php"><button type="button" class="btn btn-primary" >Add Member</button></a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addmember">Add Member</button>
+            <!-- メンバー追加Modalフォーム -->
+            <div class="modal fade" id="modal_addmember" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">メンバーを追加する</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group col-12">
+                              <div class="name">名前
+                                <input type="text" class="form-control form-control-lg" name="name">
+                              </div>     
+                              <div class="add_member_thumbnail">サムネイル
+                              <input type="file" name="img">
+                              </div>
+                              <div class="name">推し
+                                  <input type="text" class="form-control form-control-lg" name="favorite">
+                              </div>
+                              <div>血液型:
+                                <select name="blood_type">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
+                                <option value="AB">AB</option>
+                                <option value="不明">不明</option>            
+                                </select>
+                            </div>
+                      </div>
+              </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
+                    <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
+                  </div>
+                  </form>
+                  </div>
+                </div>
+            </div>
       </div>
      </div>
     <!-- navigation -->
@@ -163,7 +214,29 @@
           <div class="caption">
             <div class="card_plans">
               <h4><?php print($plan['start_time']); ?></h4>
-              <h4><?php print($plan['plan_name']); ?></h4>
+              <h4>
+                <!-- categoryに応じたアイコン表示  -->
+              <?php if($plan['plan_category'] == 1){ 
+                print('<i class="fas fa-plane"></i>');
+              }else if($plan['plan_category'] == 2){ 
+                print('<i class="fas fa-monument"></i>');
+              }else if($plan['plan_category'] == 3){ 
+                print('<i class="fas fa-utensils"></i>');
+              }else if($plan['plan_category'] == 4){ 
+                print('<i class="fas fa-bed"></i>');
+              }else if($plan['plan_category'] == 5){ 
+                print('<i class="fas fa-shopping-bag"></i>');
+              }else if($plan['plan_category'] == 6){ 
+                print('<i class="fas fa-baseball-ball"></i>');
+              }else if($plan['plan_category'] == 7){ 
+                print('<i class="fas fa-music"></i>');
+              }else if($plan['plan_category'] == 8){ 
+                print('<i class="fas fa-kiss-wink-heart"></i>');
+              }else if($plan['plan_category'] == 9){ 
+                print('<i class="fas fa-synagogue"></i>');
+              } ?>
+
+              <?php print($plan['plan_name']); ?></h4>
 
               <div>
               <!-- リンクボタン -->
@@ -210,8 +283,66 @@
   }
     ?>
   <!-- 旅程追加ボタン -->
-  <a href="form_add_plan.php"><button type="button" class="btn btn-primary" >Add Plan</button></a>
-
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addplan">Add Plan</button>
+  <!-- メンバー追加Modalフォーム -->
+  <div class="modal fade" id="modal_addplan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">プランを追加する</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <form method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                      <div class="form-group col-12">
+                            <div>  
+                            <select name="day_num">
+                            <?php for($i=1; $i<=$days; $i++){
+                            ?>
+                                <option value="<?php print($i);?>"><?php print($i) . '日目';?></option>
+                            <?php
+                            } ?>
+                                </select>
+                            </div>
+                            <div class="name">タイトル
+                                <input type="text" class="form-control form-control-lg" name="title">
+                            </div>
+                            <div>カテゴリ
+                            <select name="category">
+                                <option value="1">移動</option>
+                                <option value="2">観光</option>
+                                <option value="3">食事</option>
+                                <option value="4">宿泊</option>
+                                <option value="5">ショッピング</option>
+                                <option value="6">試合</option>            
+                                <option value="7">ライブ</option>            
+                                <option value="8">ファンミ</option>            
+                                <option value="9">聖地巡礼</option>            
+                                <option value="10">そのほか</option>            
+                            </select>
+                            </div>
+                            <div class="name">開始時間
+                                <input type="datetime-local" class="form-control form-control-lg" name="start_time">
+                            </div>
+                            <div class="name">終了時間
+                                <input type="datetime-local" class="form-control form-control-lg" name="end_time">
+                            </div>
+                            <div class="name">サイトリンク
+                                <input type="text" class="form-control form-control-lg" name="url">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
+                    <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
+                    <input type = "hidden" name = "sql_order" value = "add_plan">
+                    </div>
+                  </form>
+                </div>
+              </div>
+  </div>
 </body>
 <footer>
     <div class="copyright">
