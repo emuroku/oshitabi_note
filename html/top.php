@@ -72,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
                 $added_member_id_array = get_added_member_id($db);
                 $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
-
+                
                 // membersテーブルへtravel_idと紐づけて登録
                 insert_member($db, $travel_id, $added_member_id);
                 // コミット処理
@@ -80,7 +80,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $insert_result = true; // 登録完了フラグをTRUEにする
             }
         } catch (PDOException $e) {
-                        
             // ロールバック処理
             echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
             $db -> rollback();

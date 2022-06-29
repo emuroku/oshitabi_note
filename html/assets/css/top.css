@@ -11,6 +11,10 @@
     max-width: 400px;
 }
 
+.add_member{
+    margin-bottom: 30px;   
+}
+
 .members{
     padding: 25px;
     margin-top: 30px;
