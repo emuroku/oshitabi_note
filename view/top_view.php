@@ -151,33 +151,34 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
+                  <form method="post" enctype="multipart/form-data">
                   <div class="modal-body">
-                    <form>
-                      <div class="form-group">
-                        <label for="name" class="col-form-label">名前</label>
-                        <input type="text" class="form-control" id="name">
+                      <div class="form-group col-12">
+                              <div class="name">名前
+                                <input type="text" class="form-control form-control-lg" name="name">
+                              </div>     
+                              <div class="add_member_thumbnail">サムネイル
+                              <input type="file" name="img">
+                              </div>
+                              <div class="name">推し
+                                  <input type="text" class="form-control form-control-lg" name="favorite">
+                              </div>
+                              <div>血液型:
+                                <select name="blood_type">
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="O">O</option>
+                                <option value="AB">AB</option>
+                                <option value="不明">不明</option>            
+                               </select>
+                              </div>
                       </div>
-                      <div class="add_member_thumbnail">サムネイル
-                        <input type="file" name="img">
-                      </div>
-                      <div class="form-group">推し
-                        <input type="text" class="form-control form-control-lg" name="favorite">
-                      </div>
-                      <div class="form-group">血液型
-                        <select name="blood_type">
-                          <option value="A">A</option>
-                          <option value="B">B</option>
-                          <option value="O">O</option>
-                          <option value="AB">AB</option>
-                          <option value="不明">不明</option>            
-                        </select>
-                      </div>
-                      </div>
-                    </form>
-                  </div>
+              </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
+                    <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
+                  </div>
+                  </form>
                   </div>
                 </div>
             </div>
