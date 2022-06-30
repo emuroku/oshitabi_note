@@ -243,6 +243,10 @@
               <?php print($plan['plan_name']); ?></h4>
             </div>
               <div class="plan_button col-3">
+              <!-- 削除ボタン -->
+              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+              style="width:1.5rem;height:1.5rem;" data-toggle="modal" 
+              data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
               <!-- リンクボタン -->
               <a href="<?php print($plan['plan_url']); ?>">
                 <button type="button" class="btn btn-info  w-auto mt-3" size="15px"
@@ -252,9 +256,6 @@
                 </button>
               </a>
               
-              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
-              style="width:2rem;height:2rem;" data-toggle="modal" 
-              data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
               </div>
               <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
                   <div class="modal-dialog">
