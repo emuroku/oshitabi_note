@@ -86,7 +86,6 @@
 
 .plan_button{
     display: flex;
-    justify-content: space-around;
 }
 
 .addplan{
