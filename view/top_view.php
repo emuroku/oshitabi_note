@@ -67,7 +67,7 @@
                     <p><?php print($line[0]['member_name']); ?></p>
                     <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                     <div class="button_profile">
-                      <?php print('<button class="btn btn-light" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
+                      <?php print('<button class="btn btn-light  w-auto mt-2" data-toggle="modal" data-target="#modal' . $line[0]['member_id'].'"'); ?>>PROFILE</button>
                     </div>
                     <?php print('<div class="modal fade" id="modal' . $line[0]['member_id'].'"'); ?>>
                         <div class="modal-dialog">
@@ -243,7 +243,7 @@
               <div class="plan_button col-3">
               <!-- リンクボタン -->
               <a href="<?php print($plan['plan_url']); ?>">
-                <button type="button" class="btn btn-info  w-auto mt-2" size="30px"
+                <button type="button" class="btn btn-info  w-auto mt-2" size="20px"
                             <?php if ($plan['plan_url'] =='') {
                 print('disabled');
                 }; ?>>Link
