@@ -214,7 +214,7 @@
         <div class="card-body">
           <div class="caption">
             <div class="card_plans">
-            <div class="col-3"> 
+            <div class="col-2"> 
             <?php print($plan['start_time']); 
             ?>
 
@@ -242,11 +242,7 @@
               } ?>
               <?php print($plan['plan_name']); ?></h4>
             </div>
-              <div class="plan_button col-3">
-              <!-- 削除ボタン -->
-              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
-              style="width:1.5rem;height:1.5rem;" data-toggle="modal" 
-              data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
+              <div class="plan_button col-4">
               <!-- リンクボタン -->
               <a href="<?php print($plan['plan_url']); ?>">
                 <button type="button" class="btn btn-info  w-auto mt-3" size="15px"
@@ -255,6 +251,10 @@
                 }; ?>>Link
                 </button>
               </a>
+              <!-- 削除ボタン -->
+              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+              style="width:1.5rem;height:1.5rem;" data-toggle="modal" 
+              data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
               
               </div>
               <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
