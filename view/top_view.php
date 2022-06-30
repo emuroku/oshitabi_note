@@ -215,7 +215,9 @@
           <div class="caption">
             <div class="card_plans">
             <div class="col-3"> 
-            <?php print($plan['start_time']); ?>
+            <?php print($plan['start_time']); 
+            ?>
+
             </div>
             <div class="col-6"> 
                 <!-- categoryに応じたアイコン表示  -->
@@ -243,7 +245,7 @@
               <div class="plan_button col-3">
               <!-- リンクボタン -->
               <a href="<?php print($plan['plan_url']); ?>">
-                <button type="button" class="btn btn-info  w-auto mt-2" size="20px"
+                <button type="button" class="btn btn-info  w-auto mt-3" size="15px"
                             <?php if ($plan['plan_url'] =='') {
                 print('disabled');
                 }; ?>>Link

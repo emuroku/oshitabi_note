@@ -29,11 +29,11 @@
 
 .trim-image-to-circle {
     border-radius: 50%;
-    width:  90px;
-    height: 90px;
+    width:  120px;
+    height: 120px;
     border-radius: 50%;
     background-position: left top;
-    border: 4px solid #F0D0E4; /* 枠線を付加 */
+    border: 6px solid #F0D0E4; /* 枠線を付加 */
     object-fit: cover; 
     margin: 10px;
 }
@@ -48,10 +48,14 @@
 }
 
 .travel_thumbnail{
-    width: 400px;
-    height: 220px;
+    width: 380px;
+    height: 190px;
     object-fit: cover; 
-    margin: 30px;
+    margin: 10px 0;
+}
+
+.card-body{
+    padding: -5px;
 }
 
 .plan_day_header{
@@ -82,7 +86,7 @@
 
 .plan_button{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .addplan{
