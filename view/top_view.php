@@ -184,8 +184,7 @@
                   </div>
                 </div>
             </div>
-      </div>
-     </div>
+     </div></div></div></div>
     <!-- navigation -->
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <div class="collapse navbar-collapse" id="mainNav">
@@ -196,7 +195,7 @@
             </ul>
         </div>
     </nav>
-    
+
 
   
     <!-- 旅程 -->
@@ -215,8 +214,10 @@
         <div class="card-body">
           <div class="caption">
             <div class="card_plans">
-              <h4><?php print($plan['start_time']); ?></h4>
-              <h4>
+            <div class="col-3"> 
+            <?php print($plan['start_time']); ?>
+            </div>
+            <div class="col-6"> 
                 <!-- categoryに応じたアイコン表示  -->
               <?php if($plan['plan_category'] == 1){ 
                 print('<i class="fas fa-plane"></i>');
@@ -237,22 +238,22 @@
               }else if($plan['plan_category'] == 9){ 
                 print('<i class="fas fa-synagogue"></i>');
               } ?>
-
               <?php print($plan['plan_name']); ?></h4>
-
-              <div>
+            </div>
+              <div class="plan_button col-3">
               <!-- リンクボタン -->
               <a href="<?php print($plan['plan_url']); ?>">
-                <button type="button" class="btn btn-info"
+                <button type="button" class="btn btn-info  w-auto mt-2" size="30px"
                             <?php if ($plan['plan_url'] =='') {
                 print('disabled');
                 }; ?>>Link
                 </button>
               </a>
+              
               <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
               style="width:2rem;height:2rem;" data-toggle="modal" 
               data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
- 
+              </div>
               <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
                   <div class="modal-dialog">
                       <div class="modal-content">
@@ -285,7 +286,7 @@
   }
     ?>
   <!-- 旅程追加ボタン -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addplan">Add Plan</button>
+  <div class="addplan"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addplan">Add Plan</button></div>
   <!-- メンバー追加Modalフォーム -->
   <div class="modal fade" id="modal_addplan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -344,6 +345,7 @@
                   </form>
                 </div>
               </div>
+  </div>
   </div>
 </body>
 <!-- <footer>

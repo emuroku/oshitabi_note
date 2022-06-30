@@ -19,7 +19,6 @@
     padding: 25px;
     margin-top: 30px;
 }
-
 .member_top_info{
     margin: 10px;
 }
@@ -49,8 +48,8 @@
 }
 
 .travel_thumbnail{
-    width: 840px;
-    height: 360px;
+    width: 450px;
+    height: 220px;
     object-fit: cover; 
     margin: 30px;
 }
@@ -79,6 +78,15 @@
     display: flex;
     justify-content: space-between;
     font-family: 'M PLUS 1', sans-serif;
+}
+
+.plan_button{
+    display: flex;
+    justify-content: space-between;
+}
+
+.addplan{
+    text-align: center;
 }
 
 button{

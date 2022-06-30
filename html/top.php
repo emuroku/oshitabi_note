@@ -21,7 +21,7 @@ $new_plan_cateory = '';
 $new_plan_start_time = ''; 
 $new_plan_end_time = ''; 
 $new_plan_day_num = ''; 
-
+$new_plan_url = '';
 // session開始
 session_start();
 
