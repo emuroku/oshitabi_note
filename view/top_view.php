@@ -215,7 +215,7 @@
           <div class="caption">
             <div class="card_plans">
             <div class="col-2"> 
-            <?php print($plan['start_time']); 
+            <?php print date('m月d日 H:i', strtotime($plan['start_time'])); 
             ?>
 
             </div>
