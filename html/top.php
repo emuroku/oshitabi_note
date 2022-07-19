@@ -106,6 +106,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $new_plan_end_time = $_POST['end_time'];
                 $new_plan_url = $_POST['url'];
 
+                if($new_plan_start_time === ''){
+                    $new_plan_start_time = NULL;
+                }
+                if($new_plan_end_time === ''){
+                    $new_plan_end_time = NULL;
+                }
+
                 // member_profileテーブルへ書き込み処理
                 insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
 
