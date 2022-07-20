@@ -159,4 +159,4 @@ $memberslist_col_num = calc_memberslist_col_num($members_num);
 $plans_info = get_plans_info($db, $travel_id);
 
 // topページのクライアントソースファイル読み込み
-include_once VIEW_PATH . 'top_view.php';
+include_once VIEW_PATH . 'main_view.php';
