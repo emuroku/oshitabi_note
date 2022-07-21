@@ -52,7 +52,7 @@ function get_added_member_id($dbh){
 function insert_plan($dbh, $travel_id, $day_num, $title, $category, $start_time, $end_time, $url){
     
     // トランザクションエラー避け：datetimeに仮値を指定しておく
-    $start_time = NULL;
+    $start_time = '';
 
     // SQL文の作成
     $sql = 'INSERT INTO 03_plans (travel_id, plan_name, plan_category, start_time, end_time, day_num, plan_url) VALUES(?, ?, ?, ?, ?, ?, ?);';

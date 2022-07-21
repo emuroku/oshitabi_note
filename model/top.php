@@ -10,6 +10,34 @@ function get_travel_info($db, $travel_id){
     return $travel_info;
 }
 
+// travelsテーブルから、$paramの文字列がparamカラムの値と一致するtravel_idを検索して返す。なにもない場合はFALSEを返す
+function get_match_travel_id($db, $param){
+    // SQL文の作成
+    $sql = 'SELECT travel_id FROM 03_travels WHERE param = ?';
+    try {
+        // SQL文を実行する準備
+        $stmt = $db->prepare($sql);
+        // SQL文のプレースホルダに値をバインド
+        $stmt->bindValue(1, $param, PDO::PARAM_STR);
+        // SQLを実行
+        $stmt->execute();
+        $tmp_data = $stmt->fetchAll();
+        // var_dump($tmp_data[0]);
+
+        if($tmp_data[0] === NULL){
+            return false;
+        }
+
+        return $tmp_data[0]['travel_id'];
+
+    } catch (PDOException $e){
+        // try処理中にエラーが発生した場合は、エラーメッセージを設定
+        set_error('データ取得に失敗しました');
+    }
+    // エラーが発生した場合はfalseを返す
+    return false;
+}
+
 // 旅IDに紐づいたメンバーリストの情報をすべて取得する
 function get_members_info($db, $travel_id){
 

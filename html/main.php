@@ -31,20 +31,13 @@ $token = get_csrf_token();
 // PDO取得
 $db = get_db_connect();
 
-// GETパラメータからトラベルid取得
-$tmp_h_param = get_get('h'); 
+// トラベルid取得
+$travel_id = 1; // 一旦固定で。
 
-// GETパラメータがparamと合致するレコードをtravelsテーブルから検索
-$search_result = get_match_travel_id($db, $tmp_h_param);
-// var_dump($search_result);
-
-// FALSEが返ってきたら一致レコード無し。mainへリダイレクト
-if($search_result === FALSE){
-        header('Location: main.php');
-        exit;
-}else{
-    $travel_id = $search_result;
-}
+// if($travel_id === 1){
+//     header('Location: top.php');
+// exit;
+// }
 
 // トラベル情報を取得
 $travel_info = get_travel_info($db, $travel_id);
@@ -166,4 +159,4 @@ $memberslist_col_num = calc_memberslist_col_num($members_num);
 $plans_info = get_plans_info($db, $travel_id);
 
 // topページのクライアントソースファイル読み込み
-include_once VIEW_PATH . 'top_view.php';
+include_once VIEW_PATH . 'main_view.php';
