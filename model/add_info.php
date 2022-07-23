@@ -17,7 +17,7 @@ function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $th
         $new_param = generate_new_url_str();
 
         // 既存のtravelレコードに一致する文字列をもつparamがないかチェックする
-        $result_url_checked = is_param_available($new_param);
+        $result_url_checked = is_param_available($dbh, $new_param);
 
         // ※有効な文字列が生成されるまで繰り返す
     }
@@ -27,19 +27,37 @@ function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $th
     // SQL文を実行する準備
     $stmt = $dbh->prepare($sql);
     // SQL文のプレースホルダに値をバインド
-    $stmt->bindValue(1, $travel_id, PDO::PARAM_INT);
-    $stmt->bindValue(2, $title, PDO::PARAM_STR);
-    $stmt->bindValue(3, $category, PDO::PARAM_INT);
-    $stmt->bindValue(4, $start_time, PDO::PARAM_STR);
-    $stmt->bindValue(5, $end_time, PDO::PARAM_STR);
-    $stmt->bindValue(6, $day_num, PDO::PARAM_INT);
-    $stmt->bindValue(7, $url, PDO::PARAM_STR);
+    $stmt->bindValue(1, $title, PDO::PARAM_STR);
+    $stmt->bindValue(2, $new_param, PDO::PARAM_STR);
+    $stmt->bindValue(3, $thumbnail, PDO::PARAM_INT);
+    $stmt->bindValue(4, $start_date, PDO::PARAM_STR);
+    $stmt->bindValue(5, $end_date, PDO::PARAM_STR);
+    $stmt->bindValue(6, $days_num, PDO::PARAM_INT);
     // SQLを実行
     $stmt->execute();
 }
 
-function is_param_available($str){
-    
+function is_param_available($dbh, $str){
+
+    $result = FALSE;
+
+    // SQL文の作成
+    $sql = 'SELECT * FROM `03_travels` WHERE param = ?;';
+    // SQL文を実行する準備
+    $stmt = $dbh->prepare($sql);
+    // SQL文のプレースホルダに値をバインド
+    $stmt->bindValue(1, $str, PDO::PARAM_STR);
+    // SQLを実行
+    $stmt->execute();
+    $tmp_data = $stmt->fetchAll();
+
+    // 結果をカウント
+    if (count($tmp_data) === 0 && $str != '') {
+        $result = true;
+    }
+
+    return $result;
+
 }
 
 // メンバー新規登録：POSTされたデータをbindValueしてmembersテーブルへINSERTする
