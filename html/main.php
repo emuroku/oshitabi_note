@@ -13,15 +13,13 @@ require_once MODEL_PATH . 'top.php';
 require_once MODEL_PATH . 'add_info.php';
 
 
-$delete_plan_id = 0; // plan削除実行用の変数を用意
+// AddTravelで送信されたパラメータを入れる変数の宣言
+$new_travel_title = ''; 
+$new_travel_start_date = ''; 
+$new_travel_end_date = ''; 
+$new_travel_days_num = 1; 
+$new_travel_thumbnail = '';
 
-// AddPlanで送信されたパラメータを入れる変数の宣言
-$new_plan_title = ''; 
-$new_plan_cateory = ''; 
-$new_plan_start_time = ''; 
-$new_plan_end_time = ''; 
-$new_plan_day_num = ''; 
-$new_plan_url = '';
 // session開始
 session_start();
 
@@ -31,39 +29,25 @@ $token = get_csrf_token();
 // PDO取得
 $db = get_db_connect();
 
-// トラベルid取得
-$travel_id = 1; // 一旦固定で。
-
-// if($travel_id === 1){
-//     header('Location: top.php');
-// exit;
-// }
-
-// トラベル情報を取得
-$travel_info = get_travel_info($db, $travel_id);
-// 日程数を取得
-$days = $travel_info[0]['days'];
-
 // REQUEST_METHODで削除オーダーを受け取る
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['sql_order']) !== true) {
-        // メンバーテーブルへユーザ情報をINSERTする
+        // travelsテーブルへユーザ情報をINSERTする
         // ----------ここからトランザクション処理----------
         try {
             $db -> beginTransAction();
 
             // 入力値を変数に代入
-            $new_member_name = $_POST['name'];
-            // $new_member_thumbnail = $_POST['img']; // 画像は別途処理
-            $new_member_blood_type = $_POST['blood_type'];
-            $new_member_favorite = $_POST['favorite'];
+            $new_travel_title = $_POST['title'];
+            $new_travel_start_date = $_POST['start_date'];
+            $new_travel_end_date = $_POST['end_date'];
+            $new_travel_days_num = $_POST['days'];
 
             // -------画像のアップロード---------
-                $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
-                $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
-            $file = '../html/assets/img/members/' . $new_member_thumbnail;
+            $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
+            $new_travel_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
+            $file = '../html/assets/img/thumbnail/' . $new_travel_thumbnail;
             if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
-                move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
+                move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/thumbnail/' . $new_travel_thumbnail);//imagesディレクトリにファイル保存
                     if (exif_imagetype($file)) {//画像ファイルかのチェック
                         $message = '画像をアップロードしました';
                     } else {
@@ -72,15 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // -------ここまで画像アップロード処理--------
 
-                // member_profileテーブルへ書き込み処理
-                insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
-                // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
-                $added_member_id_array = get_added_member_id($db);
-                $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
+                // travelsテーブルへ書き込み処理
+                insert_travel_info($db, $new_travel_title, $new_travel_start_date, $new_travel_end_date, $new_travel_days_num, $new_travel_thumbnail);
                 
-                // membersテーブルへtravel_idと紐づけて登録
-                insert_member($db, $travel_id, $added_member_id);
-                // コミット処理
                 $db -> commit();
                 $insert_result = true; // 登録完了フラグをTRUEにする
             }

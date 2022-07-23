@@ -6,6 +6,42 @@ require_once MODEL_PATH . 'functions.php';
 // topページ用関数ファイル読み込み
 require_once MODEL_PATH . 'top.php';
 
+// 旅程 新規登録：POSTされたデータをbindValueしてplansテーブルへINSERTする
+function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $thumbnail){
+
+    $result_url_checked = FALSE;
+    $new_param = '';
+
+    while($result_url_checked === FALSE){
+        // 専用URL用のランダム文字列を生成
+        $new_param = generate_new_url_str();
+
+        // 既存のtravelレコードに一致する文字列をもつparamがないかチェックする
+        $result_url_checked = is_param_available($new_param);
+
+        // ※有効な文字列が生成されるまで繰り返す
+    }
+
+    // SQL文の作成
+    $sql = 'INSERT INTO 03_travels (travel_name, param, thumbnail, start_date, end_date, days) VALUES(?, ?, ?, ?, ?, ?);';
+    // SQL文を実行する準備
+    $stmt = $dbh->prepare($sql);
+    // SQL文のプレースホルダに値をバインド
+    $stmt->bindValue(1, $travel_id, PDO::PARAM_INT);
+    $stmt->bindValue(2, $title, PDO::PARAM_STR);
+    $stmt->bindValue(3, $category, PDO::PARAM_INT);
+    $stmt->bindValue(4, $start_time, PDO::PARAM_STR);
+    $stmt->bindValue(5, $end_time, PDO::PARAM_STR);
+    $stmt->bindValue(6, $day_num, PDO::PARAM_INT);
+    $stmt->bindValue(7, $url, PDO::PARAM_STR);
+    // SQLを実行
+    $stmt->execute();
+}
+
+function is_param_available($str){
+    
+}
+
 // メンバー新規登録：POSTされたデータをbindValueしてmembersテーブルへINSERTする
 function insert_member($dbh, $travel_id, $member_id){
     // SQL文の作成
@@ -35,6 +71,12 @@ function insert_member_profile($dbh, $name, $thumbnail, $blood_type, $favorite){
     $stmt->execute();
 }
 
+// ランダムURL用の文字列を生成する
+function generate_new_url_str(){
+    $new_str = uniqid(mt_rand(), true);
+    return $new_str;
+}
+
 // 直前にmember_profileテーブルへ登録したメンバーid（AUTO_INCREMENT）の取得
 function get_added_member_id($dbh){
      // SQL文の作成
@@ -52,7 +94,7 @@ function get_added_member_id($dbh){
 function insert_plan($dbh, $travel_id, $day_num, $title, $category, $start_time, $end_time, $url){
     
     // トランザクションエラー避け：datetimeに仮値を指定しておく
-    $start_time = '';
+    // $start_time = '';
 
     // SQL文の作成
     $sql = 'INSERT INTO 03_plans (travel_id, plan_name, plan_category, start_time, end_time, day_num, plan_url) VALUES(?, ?, ?, ?, ?, ?, ?);';

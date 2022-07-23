@@ -290,7 +290,7 @@
     ?>
   <!-- 旅程追加ボタン -->
   <div class="addplan"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addplan">Add Plan</button></div>
-  <!-- メンバー追加Modalフォーム -->
+  <!-- 旅程追加Modalフォーム -->
   <div class="modal fade" id="modal_addplan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
