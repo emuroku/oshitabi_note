@@ -124,16 +124,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-// 参加メンバー情報を取得
-$members_info = get_members_info($db, $travel_id);
-// var_dump($members_info);
-
-// メンバーリスト表示のレイアウトcol数を算出
-$members_num = count($members_info);
-$memberslist_col_num = calc_memberslist_col_num($members_num);
-
-// 旅程情報を取得
-$plans_info = get_plans_info($db, $travel_id);
 
 // topページのクライアントソースファイル読み込み
 include_once VIEW_PATH . 'main_view.php';
