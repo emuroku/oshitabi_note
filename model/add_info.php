@@ -15,6 +15,7 @@ function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $th
     while($result_url_checked === FALSE){
         // 専用URL用のランダム文字列を生成
         $new_param = generate_new_url_str();
+        print ($new_param);
 
         // 既存のtravelレコードに一致する文字列をもつparamがないかチェックする
         $result_url_checked = is_param_available($dbh, $new_param);
