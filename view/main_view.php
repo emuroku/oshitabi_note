@@ -84,6 +84,9 @@
                                     <label for="days">日間</label>
                                 </div>
                             </div>
+                            <div class="add_member_thumbnail">サムネイル
+                              <input type="file" name="img">
+                            </div>
                         </div>
                         </div>
                         <div class="modal-footer">
