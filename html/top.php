@@ -22,6 +22,7 @@ $new_plan_start_time = '';
 $new_plan_end_time = ''; 
 $new_plan_day_num = ''; 
 $new_plan_url = '';
+
 // session開始
 session_start();
 
@@ -51,7 +52,6 @@ $travel_info = get_travel_info($db, $travel_id);
 // 日程数を取得
 $days = $travel_info[0]['days'];
 
-// REQUEST_METHODで削除オーダーを受け取る
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['sql_order']) !== true) {
         // すべての項目が埋まってるかチェック
@@ -110,39 +110,42 @@ if (is_post_available($_POST) === true) {
 
         // Plan追加
         if ($sql_order === 'add_plan') {
-            // DBへ接続
-            $db -> beginTransAction();
-            try {
-                // 入力値を変数に代入
-                $new_plan_title = $_POST['title'];
-                $new_plan_cateory = $_POST['category'];
-                $new_plan_day_num = $_POST['day_num'];
-                $new_plan_start_time = $_POST['start_time'];
-                $new_plan_end_time = $_POST['end_time'];
-                $new_plan_url = $_POST['url'];
 
-                if($new_plan_start_time === ''){
-                    $new_plan_start_time = NULL;
+            // if (is_post_available($_POST) === true) {
+                // DBへ接続
+                $db -> beginTransAction();
+                try {
+                    // 入力値を変数に代入
+                    $new_plan_title = $_POST['title'];
+                    $new_plan_cateory = $_POST['category'];
+                    $new_plan_day_num = $_POST['day_num'];
+                    $new_plan_start_time = $_POST['start_time'];
+                    $new_plan_end_time = $_POST['end_time'];
+                    $new_plan_url = $_POST['url'];
+
+                    if ($new_plan_start_time === '') {
+                        $new_plan_start_time = null;
+                    }
+                    if ($new_plan_end_time === '') {
+                        $new_plan_end_time = null;
+                    }
+
+                    // member_profileテーブルへ書き込み処理
+                    insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
+
+                    // コミット処理
+                    $db -> commit();
+                    $insert_result = true; // 登録完了フラグをTRUEにする
+                } catch (PDOException $e) {
+                                    
+                    // ロールバック処理
+                    echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
+                    $db -> rollback();
+                    // 例外をスロー
+                    throw $e;
                 }
-                if($new_plan_end_time === ''){
-                    $new_plan_end_time = NULL;
-                }
-
-                // member_profileテーブルへ書き込み処理
-                insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
-
-                // コミット処理
-                $db -> commit();
-                $insert_result = true; // 登録完了フラグをTRUEにする
-            } catch (PDOException $e) {
-                        
-                        // ロールバック処理
-                echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
-                $db -> rollback();
-                // 例外をスロー
-                throw $e;
+                // ----------ここまでトランザクション処理----------
             }
-            // ----------ここまでトランザクション処理----------
         }
         // planを削除する場合
         elseif ($sql_order === 'delete_plan') {
@@ -154,7 +157,7 @@ if (is_post_available($_POST) === true) {
             $delete_member_id = $_POST['delete_id'];
             delete_member($db, $delete_member_id);
         }
-    }
+    // }
 }
 
 // 参加メンバー情報を取得
