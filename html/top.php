@@ -54,50 +54,54 @@ $days = $travel_info[0]['days'];
 // REQUEST_METHODで削除オーダーを受け取る
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['sql_order']) !== true) {
-        // メンバーテーブルへユーザ情報をINSERTする
-        // ----------ここからトランザクション処理----------
-        try {
-            $db -> beginTransAction();
+        // すべての項目が埋まってるかチェック
+if (is_post_available($_POST) === true) {
 
-            // 入力値を変数に代入
-            $new_member_name = $_POST['name'];
-            // $new_member_thumbnail = $_POST['img']; // 画像は別途処理
-            $new_member_blood_type = $_POST['blood_type'];
-            $new_member_favorite = $_POST['favorite'];
+    // メンバーテーブルへユーザ情報をINSERTする
+    // ----------ここからトランザクション処理----------
+    try {
+        $db -> beginTransAction();
 
-            // -------画像のアップロード---------
-                $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
-                $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
-            $file = '../html/assets/img/members/' . $new_member_thumbnail;
-            if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
-                move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
-                if (exif_imagetype($file)) {//画像ファイルかのチェック
-                    $message = '画像をアップロードしました';
-                } else {
-                    $message = '画像ファイルではありません';
-                }
+        // 入力値を変数に代入
+        $new_member_name = $_POST['name'];
+        // $new_member_thumbnail = $_POST['img']; // 画像は別途処理
+        $new_member_blood_type = $_POST['blood_type'];
+        $new_member_favorite = $_POST['favorite'];
+
+                // -------画像のアップロード---------
+        $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
+        $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
+        $file = '../html/assets/img/members/' . $new_member_thumbnail;
+        if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
+            move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
+            if (exif_imagetype($file)) {//画像ファイルかのチェック
+                $message = '画像をアップロードしました';
+            } else {
+                $message = '画像ファイルではありません';
             }
-
-                // -------ここまで画像アップロード処理--------
-                // member_profileテーブルへ書き込み処理
-                insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
-                // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
-                $added_member_id_array = get_added_member_id($db);
-                $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
-                
-                // membersテーブルへtravel_idと紐づけて登録
-                insert_member($db, $travel_id, $added_member_id);
-                // コミット処理
-                $db -> commit();
-                $insert_result = true; // 登録完了フラグをTRUEにする
-        } catch (PDOException $e) {
-            // ロールバック処理
-            echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
-            $db -> rollback();
-            // 例外をスロー
-            throw $e;
         }
-        // ----------ここまでトランザクション処理----------
+
+        // -------ここまで画像アップロード処理--------
+        // member_profileテーブルへ書き込み処理
+        insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
+        // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
+        $added_member_id_array = get_added_member_id($db);
+        $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
+                
+        // membersテーブルへtravel_idと紐づけて登録
+        insert_member($db, $travel_id, $added_member_id);
+        // コミット処理
+        $db -> commit();
+        $insert_result = true; // 登録完了フラグをTRUEにする
+    } catch (PDOException $e) {
+        // ロールバック処理
+        echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
+        $db -> rollback();
+        // 例外をスロー
+        throw $e;
+    }
+    // ----------ここまでトランザクション処理----------
+        }
     }
 
     // 既存レコードの操作オーダーを受け取った場合の処理
