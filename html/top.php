@@ -71,14 +71,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $file = '../html/assets/img/members/' . $new_member_thumbnail;
             if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
                 move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
-                    if (exif_imagetype($file)) {//画像ファイルかのチェック
-                        $message = '画像をアップロードしました';
-                    } else {
-                        $message = '画像ファイルではありません';
-                    }
+                if (exif_imagetype($file)) {//画像ファイルかのチェック
+                    $message = '画像をアップロードしました';
+                } else {
+                    $message = '画像ファイルではありません';
+                }
+            }
 
                 // -------ここまで画像アップロード処理--------
-
                 // member_profileテーブルへ書き込み処理
                 insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
                 // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
@@ -90,7 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // コミット処理
                 $db -> commit();
                 $insert_result = true; // 登録完了フラグをTRUEにする
-            }
         } catch (PDOException $e) {
             // ロールバック処理
             echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
