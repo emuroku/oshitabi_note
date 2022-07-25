@@ -22,6 +22,7 @@ $new_plan_start_time = '';
 $new_plan_end_time = ''; 
 $new_plan_day_num = ''; 
 $new_plan_url = '';
+
 // session開始
 session_start();
 
@@ -51,53 +52,56 @@ $travel_info = get_travel_info($db, $travel_id);
 // 日程数を取得
 $days = $travel_info[0]['days'];
 
-// REQUEST_METHODで削除オーダーを受け取る
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['sql_order']) !== true) {
-        // メンバーテーブルへユーザ情報をINSERTする
-        // ----------ここからトランザクション処理----------
-        try {
-            $db -> beginTransAction();
+        // すべての項目が埋まってるかチェック
+if (is_post_available($_POST) === true) {
 
-            // 入力値を変数に代入
-            $new_member_name = $_POST['name'];
-            // $new_member_thumbnail = $_POST['img']; // 画像は別途処理
-            $new_member_blood_type = $_POST['blood_type'];
-            $new_member_favorite = $_POST['favorite'];
+    // メンバーテーブルへユーザ情報をINSERTする
+    // ----------ここからトランザクション処理----------
+    try {
+        $db -> beginTransAction();
 
-            // -------画像のアップロード---------
-                $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
-                $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
-            $file = '../html/assets/img/members/' . $new_member_thumbnail;
-            if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
-                move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
-                if (exif_imagetype($file)) {//画像ファイルかのチェック
-                    $message = '画像をアップロードしました';
-                } else {
-                    $message = '画像ファイルではありません';
-                }
+        // 入力値を変数に代入
+        $new_member_name = $_POST['name'];
+        // $new_member_thumbnail = $_POST['img']; // 画像は別途処理
+        $new_member_blood_type = $_POST['blood_type'];
+        $new_member_favorite = $_POST['favorite'];
+
+                // -------画像のアップロード---------
+        $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
+        $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
+        $file = '../html/assets/img/members/' . $new_member_thumbnail;
+        if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
+            move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
+            if (exif_imagetype($file)) {//画像ファイルかのチェック
+                $message = '画像をアップロードしました';
+            } else {
+                $message = '画像ファイルではありません';
             }
-
-                // -------ここまで画像アップロード処理--------
-                // member_profileテーブルへ書き込み処理
-                insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
-                // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
-                $added_member_id_array = get_added_member_id($db);
-                $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
-                
-                // membersテーブルへtravel_idと紐づけて登録
-                insert_member($db, $travel_id, $added_member_id);
-                // コミット処理
-                $db -> commit();
-                $insert_result = true; // 登録完了フラグをTRUEにする
-        } catch (PDOException $e) {
-            // ロールバック処理
-            echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
-            $db -> rollback();
-            // 例外をスロー
-            throw $e;
         }
-        // ----------ここまでトランザクション処理----------
+
+        // -------ここまで画像アップロード処理--------
+        // member_profileテーブルへ書き込み処理
+        insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
+        // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
+        $added_member_id_array = get_added_member_id($db);
+        $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
+                
+        // membersテーブルへtravel_idと紐づけて登録
+        insert_member($db, $travel_id, $added_member_id);
+        // コミット処理
+        $db -> commit();
+        $insert_result = true; // 登録完了フラグをTRUEにする
+    } catch (PDOException $e) {
+        // ロールバック処理
+        echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
+        $db -> rollback();
+        // 例外をスロー
+        throw $e;
+    }
+    // ----------ここまでトランザクション処理----------
+        }
     }
 
     // 既存レコードの操作オーダーを受け取った場合の処理
@@ -106,39 +110,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         // Plan追加
         if ($sql_order === 'add_plan') {
-            // DBへ接続
-            $db -> beginTransAction();
-            try {
-                // 入力値を変数に代入
-                $new_plan_title = $_POST['title'];
-                $new_plan_cateory = $_POST['category'];
-                $new_plan_day_num = $_POST['day_num'];
-                $new_plan_start_time = $_POST['start_time'];
-                $new_plan_end_time = $_POST['end_time'];
-                $new_plan_url = $_POST['url'];
 
-                if($new_plan_start_time === ''){
-                    $new_plan_start_time = NULL;
+            // if (is_post_available($_POST) === true) {
+                // DBへ接続
+                $db -> beginTransAction();
+                try {
+                    // 入力値を変数に代入
+                    $new_plan_title = $_POST['title'];
+                    $new_plan_cateory = $_POST['category'];
+                    $new_plan_day_num = $_POST['day_num'];
+                    $new_plan_start_time = $_POST['start_time'];
+                    $new_plan_end_time = $_POST['end_time'];
+                    $new_plan_url = $_POST['url'];
+
+                    if ($new_plan_start_time === '') {
+                        $new_plan_start_time = null;
+                    }
+                    if ($new_plan_end_time === '') {
+                        $new_plan_end_time = null;
+                    }
+
+                    // member_profileテーブルへ書き込み処理
+                    insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
+
+                    // コミット処理
+                    $db -> commit();
+                    $insert_result = true; // 登録完了フラグをTRUEにする
+                } catch (PDOException $e) {
+                                    
+                    // ロールバック処理
+                    echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
+                    $db -> rollback();
+                    // 例外をスロー
+                    throw $e;
                 }
-                if($new_plan_end_time === ''){
-                    $new_plan_end_time = NULL;
-                }
-
-                // member_profileテーブルへ書き込み処理
-                insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
-
-                // コミット処理
-                $db -> commit();
-                $insert_result = true; // 登録完了フラグをTRUEにする
-            } catch (PDOException $e) {
-                        
-                        // ロールバック処理
-                echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
-                $db -> rollback();
-                // 例外をスロー
-                throw $e;
+                // ----------ここまでトランザクション処理----------
             }
-            // ----------ここまでトランザクション処理----------
         }
         // planを削除する場合
         elseif ($sql_order === 'delete_plan') {
@@ -150,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $delete_member_id = $_POST['delete_id'];
             delete_member($db, $delete_member_id);
         }
-    }
+    // }
 }
 
 // 参加メンバー情報を取得

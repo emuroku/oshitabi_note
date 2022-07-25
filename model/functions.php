@@ -115,3 +115,16 @@ function get_file($name){
     return array();
   }
   
+  // POSTメソッドにより送信された入力値に空欄がないか調べる
+  function is_post_available($array){
+
+    $result = TRUE;
+    // var_dump($array);
+    foreach($array as $line){
+        if($line === '' | $line === NULL){
+            $result = FALSE;
+        }
+    }
+
+    return $result;
+  }
