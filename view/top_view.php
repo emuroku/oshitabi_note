@@ -157,13 +157,13 @@
                   <div class="modal-body">
                       <div class="form-group col-12">
                               <div class="name">名前
-                                <input type="text" class="form-control form-control-lg" name="name">
+                                <input type="text" class="form-control form-control-lg" name="name" required="required">
                               </div>     
                               <div class="add_member_thumbnail">サムネイル
-                              <input type="file" name="img">
+                              <input type="file" name="img" required="required">
                               </div>
                               <div class="name">推し
-                                  <input type="text" class="form-control form-control-lg" name="favorite">
+                                  <input type="text" class="form-control form-control-lg" name="favorite" required="required">
                               </div>
                               <div>血液型:
                                 <select name="blood_type">
@@ -244,7 +244,7 @@
             </div>
               <div class="plan_button col-4">
               <!-- リンクボタン -->
-              <a href="<?php print($plan['plan_url']); ?>">
+              <a href="<?php print($plan['plan_url']); ?>" target="_blank">
                 <button type="button" class="btn btn-info  w-auto mt-3" size="15px"
                             <?php if ($plan['plan_url'] =='') {
                 print('disabled');
@@ -313,7 +313,7 @@
                                 </select>
                             </div>
                             <div class="name">タイトル
-                                <input type="text" class="form-control form-control-lg" name="title">
+                                <input type="text" class="form-control form-control-lg" name="title" required="required">
                             </div>
                             <div>カテゴリ
                             <select name="category">
@@ -330,7 +330,7 @@
                             </select>
                             </div>
                             <div class="name">開始時間
-                                <input type="datetime-local" class="form-control form-control-lg" name="start_time">
+                                <input type="datetime-local" class="form-control form-control-lg" name="start_time" required="required">
                             </div>
                             <div class="name">終了時間
                                 <input type="datetime-local" class="form-control form-control-lg" name="end_time">

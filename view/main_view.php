@@ -70,21 +70,22 @@
                   <div class="modal-body">
                       <div class="form-group col-12">
                             <div class="name">旅のタイトル
-                                <input type="text" class="form-control form-control-lg" name="title">
+                                <input type="text" class="form-control form-control-lg" name="title" required = "required">
                             </div>
                             <div class="name">開始日
-                                <input type="datetime-local" class="form-control form-control-lg" name="start_date">
+                                <input type="datetime-local" class="form-control form-control-lg" name="start_date"  required = "required">
                             </div>
                             <div class="name">終了日
-                                <input type="datetime-local" class="form-control form-control-lg" name="end_date">
+                                <input type="datetime-local" class="form-control form-control-lg" name="end_date" required = "required">
                             </div>
                             <div>日数
                                 <div class="days">
-                                    <input type="number" class="form-control col-3" name="days" required min="1" max="99" id="days" placeholder value="1">
+                                    <input type="number" class="form-control col-3" name="days" required min="1" max="99" id="days" placeholder value="1"  required = "required">
                                     <label for="days">日間</label>
                                 </div>
                             </div>
-                            <div class="add_member_thumbnail">サムネイル
+                            <div class="add_member_thumbnail">サムネイル<br/>
+                                <!-- <small>設定しない場合、デフォルトのサムネイルフォトが表示されます</small> -->
                               <input type="file" name="img">
                             </div>
                         </div>
