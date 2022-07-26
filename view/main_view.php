@@ -73,10 +73,10 @@
                                 <input type="text" class="form-control form-control-lg" name="title" required = "required">
                             </div>
                             <div class="name">開始日
-                                <input type="datetime-local" class="form-control form-control-lg" name="start_date"  required = "required">
+                                <input type="date" class="form-control form-control-lg" name="start_date"  required = "required">
                             </div>
                             <div class="name">終了日
-                                <input type="datetime-local" class="form-control form-control-lg" name="end_date" required = "required">
+                                <input type="date" class="form-control form-control-lg" name="end_date" required = "required">
                             </div>
                             <div>日数
                                 <div class="days">
