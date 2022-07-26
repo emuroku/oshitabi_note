@@ -146,7 +146,7 @@ if (is_post_available($_POST) === true) {
                 }
                 // ----------ここまでトランザクション処理----------
             }
-        }
+        
         // planを削除する場合
         elseif ($sql_order === 'delete_plan') {
             $delete_plan_id = $_POST['delete_id'];
@@ -157,7 +157,7 @@ if (is_post_available($_POST) === true) {
             $delete_member_id = $_POST['delete_id'];
             delete_member($db, $delete_member_id);
         }
-    // }
+    }
 }
 
 // 参加メンバー情報を取得
