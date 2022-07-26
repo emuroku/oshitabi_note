@@ -53,7 +53,7 @@
         </div>
     
     <!-- サムネイル     -->
-     <img src="<?php print(IMG_PATH . '/thumbnail/' . "buffapon.jpg"); ?>" class="travel_thumbnail">
+     <img src="<?php print(IMG_PATH . '/thumbnail/' . $travel_info[0]['thumbnail']); ?>" class="travel_thumbnail">
 
      <!-- メンバー -->
      <div class="members">
