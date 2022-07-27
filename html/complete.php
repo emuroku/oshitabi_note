@@ -12,6 +12,7 @@ require_once MODEL_PATH . 'top.php';
 // 情報登録用関数ファイル読み込み
 require_once MODEL_PATH . 'add_info.php';
 
+
 // session開始
 session_start();
 
@@ -19,4 +20,4 @@ session_start();
 $token = get_csrf_token();
 
 // topページのクライアントソースファイル読み込み
-include_once VIEW_PATH . 'main_view.php';
+include_once VIEW_PATH . 'complete_view.php';
