@@ -83,10 +83,10 @@ function get_member_profiles($dbh, $members_list){
  // 1行4名まで、最大8名まで表示
 function calc_memberslist_col_num($members_num){
     $col_num = 1; 
-    if($members_num <= 4){
+    if($members_num <= 4 && $members_num > 0){
          $col_num = 12 / $members_num;
     }else{
-     // メンバーが5名以上」の場合はメンバー表示欄2行目のcol-3で固定
+     // メンバーが5名以上の場合はメンバー表示欄2行目のcol-3で固定
      $col_num = 3;
     }
     return $col_num;
