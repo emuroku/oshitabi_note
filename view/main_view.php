@@ -66,7 +66,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <form method="post" enctype="multipart/form-data">
+                  <form method="post" action="added_travel.php" enctype="multipart/form-data">
                   <div class="modal-body">
                       <div class="form-group col-12">
                             <div class="name">旅のタイトル
