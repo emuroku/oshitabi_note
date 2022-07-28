@@ -55,7 +55,7 @@
             <textarea class="form-control"
                         area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?> </textarea>
           </div>
-          <div class="addtravel"><button type="button" class="btn btn-primary">noteを見る</button></div>
+          <a href="<?php print('http://oshitabinote.com/top.php?h=' . $added_url_param); ?>" target="_blank"><button type="button" class="btn btn-primary">noteを見る</button>
     </div>
 </body>
 <!-- <footer>
