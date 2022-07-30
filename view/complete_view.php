@@ -17,6 +17,7 @@
     <!-- オフライン時作業用 -->
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/complete.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/main.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
     
@@ -55,8 +56,8 @@
             <textarea class="form-control"
                         area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?> </textarea>
           </div>
-          <a href="<?php print('http://oshitabinote.com/top.php?h=' . $added_url_param); ?>" target="_blank"><button type="button" class="btn btn-primary">noteを見る</button>
-    </div>
+            <a href="<?php print('http://oshitabinote.com/top.php?h=' . $added_url_param); ?>" target="_blank"><button type="button" class="btn btn-primary link_newtravel">noteを見る</button>
+          </div>
 </body>
 <!-- <footer>
     <div class="copyright">
