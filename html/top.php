@@ -151,9 +151,11 @@ if (is_post_available($_POST) === true) {
             // 登録済みprofileをupdateする場合
             $update_member_id = $_POST['update_member_id'];
             $update_member_name = $_POST['name'];
-            $update_member_thumbnail = $_POST[''];
-            $update_member_name = $_POST['name'];
-            update_profile($db, $update_member_id);
+            $update_member_blood_type = $_POST['blood_type'];
+            $update_member_thumbnail = upload_img($_FILES, '../html/assets/img/members/');
+            $update_member_favorite = $_POST['favorite'];
+            update_profile($db, $update_member_id, $update_member_name, 
+                            $update_member_thumbnail, $update_member_blood_type, $update_member_favorite);
         }
     }
 }

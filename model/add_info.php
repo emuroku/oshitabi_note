@@ -259,3 +259,21 @@ function upload_img($array, $filepath)
     }
     return $new_img;
 }
+
+// 登録済みProfileのUPDATE
+function update_profile($db, $member_id, $name, $thumbnail, $blood_type, $favorite){
+    // SQL文の作成
+    // $sql = 'INSERT INTO 03_member_profiles (member_name, member_thumbnail, blood_type, favorite) VALUES(?, ?, ?, ?);';
+    $sql = 'UPDATE `03_member_profiles` SET `member_name`= ?, `member_thumbnail`= ?
+                    ,`blood_type`= ?, `favorite`= ? WHERE `member_id`= ?';
+    // SQL文を実行する準備
+    $stmt = $db->prepare($sql);
+    // SQL文のプレースホルダに値をバインド
+    $stmt->bindValue(1, $name, PDO::PARAM_STR);
+    $stmt->bindValue(2, $thumbnail, PDO::PARAM_STR);
+    $stmt->bindValue(3, $blood_type, PDO::PARAM_STR);
+    $stmt->bindValue(4, $favorite, PDO::PARAM_STR);
+    $stmt->bindValue(5, $member_id, PDO::PARAM_INT);
+    // SQLを実行
+    $stmt->execute();
+}
