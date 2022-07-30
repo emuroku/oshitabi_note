@@ -51,7 +51,7 @@
     <div class="container">
         <div class="jumbotron">
           <div class="travel_title">
-            <h3>推し旅のしおりを作成して仲間とシェアできます</h3>
+            <h3>旅のしおりnoteを作成して仲間とシェアできます</h3>
           </div>
         </div>  
         <!-- 旅の追加ボタン -->
