@@ -107,7 +107,7 @@
                                   <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
                                     style="width:2rem;height:2rem;" data-toggle="modal" 
                                     data-target="#modal-member-del' . $line[0]['member_id'] . '">-</button>'); ?>
-                                    <button class="btn btn-primary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary" data-dismiss="modal">Edit</button>
                                 </div>
                                  <!-- Profile Modal フッタ ここまで -->
                                  
