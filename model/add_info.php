@@ -7,12 +7,13 @@ require_once MODEL_PATH . 'functions.php';
 require_once MODEL_PATH . 'top.php';
 
 // 旅程 新規登録：POSTされたデータをbindValueしてplansテーブルへINSERTする
-function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $thumbnail){
+function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $thumbnail)
+{
 
     $result_url_checked = FALSE;
     $new_param = '';
 
-    while($result_url_checked === FALSE){
+    while ($result_url_checked === FALSE) {
         // 専用URL用のランダム文字列を生成
         $new_param = generate_new_url_str();
         // print ($new_param);
@@ -38,7 +39,8 @@ function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $th
     $stmt->execute();
 }
 
-function is_param_available($dbh, $str){
+function is_param_available($dbh, $str)
+{
 
     $result = FALSE;
 
@@ -58,11 +60,11 @@ function is_param_available($dbh, $str){
     }
 
     return $result;
-
 }
 
 // メンバー新規登録：POSTされたデータをbindValueしてmembersテーブルへINSERTする
-function insert_member($dbh, $travel_id, $member_id){
+function insert_member($dbh, $travel_id, $member_id)
+{
     // SQL文の作成
     $sql = 'INSERT INTO 03_members (travel_id, member_id) VALUES(?, ?);';
     // SQL文を実行する準備
@@ -76,7 +78,8 @@ function insert_member($dbh, $travel_id, $member_id){
 
 
 // メンバー新規登録：POSTされたデータをbindValueしてmembersテーブルへINSERTする
-function insert_member_profile($dbh, $name, $thumbnail, $blood_type, $favorite){
+function insert_member_profile($dbh, $name, $thumbnail, $blood_type, $favorite)
+{
     // SQL文の作成
     $sql = 'INSERT INTO 03_member_profiles (member_name, member_thumbnail, blood_type, favorite) VALUES(?, ?, ?, ?);';
     // SQL文を実行する準備
@@ -91,26 +94,29 @@ function insert_member_profile($dbh, $name, $thumbnail, $blood_type, $favorite){
 }
 
 // ランダムURL用の文字列を生成する
-function generate_new_url_str(){
+function generate_new_url_str()
+{
     $new_str = uniqid(mt_rand(), true);
     return $new_str;
 }
 
 // 直前にmember_profileテーブルへ登録したメンバーid（AUTO_INCREMENT）の取得
-function get_added_member_id($dbh){
-     // SQL文の作成
-     $sql = 'SELECT LAST_INSERT_ID()';
-     // SQL文を実行する準備
-     $stmt = $dbh->prepare($sql);
-     // SQLを実行
-     $stmt->execute();
-     $added_member_id = $stmt->fetchAll();
+function get_added_member_id($dbh)
+{
+    // SQL文の作成
+    $sql = 'SELECT LAST_INSERT_ID()';
+    // SQL文を実行する準備
+    $stmt = $dbh->prepare($sql);
+    // SQLを実行
+    $stmt->execute();
+    $added_member_id = $stmt->fetchAll();
     //  var_dump($added_member_id);
-     return $added_member_id;
+    return $added_member_id;
 }
 
 // 直前にtravelsテーブルへ登録したtravel_idのレコードのURL用paramの取得
-function get_added_travel_param($dbh){
+function get_added_travel_param($dbh)
+{
     // SQL文の作成
     $sql = 'SELECT param FROM 03_travels WHERE travel_id = LAST_INSERT_ID()';
     // SQL文を実行する準備
@@ -122,8 +128,9 @@ function get_added_travel_param($dbh){
 }
 
 // 旅程 新規登録：POSTされたデータをbindValueしてplansテーブルへINSERTする
-function insert_plan($dbh, $travel_id, $day_num, $title, $category, $start_time, $end_time, $url){
-    
+function insert_plan($dbh, $travel_id, $day_num, $title, $category, $start_time, $end_time, $url)
+{
+
     // トランザクションエラー避け：datetimeに仮値を指定しておく
     // $start_time = '';
 
@@ -197,39 +204,76 @@ function file_upload($file, $err_msg, $filename, $img_dir)
 }
 
 // 画像データをチェックし、不正の場合は空の文字列を返す。不正でない場合は画像名を生成して返す
-function get_upload_filename($file){
+function get_upload_filename($file)
+{
     // 画像ファイルをチェックする
-    if(is_valid_upload_image($file) === false){
-      // チェック結果がfalseの場合、空の文字列を返す
-      return '';
+    if (is_valid_upload_image($file) === false) {
+        // チェック結果がfalseの場合、空の文字列を返す
+        return '';
     }
     // チェック結果がtrueの場合、ファイルの先頭バイトを読み込み定数を$mimetypeに代入
     $mimetype = exif_imagetype($file['tmp_name']);
     // PERMITTED_IMAGE_TYPESに保存されている$mimetypeの拡張子を取得し、$extに代入
     $ext = PERMITTED_IMAGE_TYPES[$mimetype];
-    
+
     // 画像名にランダムの文字列を取得し、拡張子を付けて返す
     return get_random_string() . '.' . $ext;
-  }
+}
 
-  // 入力した画像ファイルの内容をチェックし、不正な場合はエラーメッセージを設定しfalseを返す。適正な場合はtrueを返す
-function is_valid_upload_image($image){
+// 入力した画像ファイルの内容をチェックし、不正な場合はエラーメッセージを設定しfalseを返す。適正な場合はtrueを返す
+function is_valid_upload_image($image)
+{
     // $imageがHTTP POSTでアップロードされたファイルでない場合
-    if(is_uploaded_file($image['tmp_name']) === false){
-      // SESSIONにエラーメッセージを設定する
-      set_error('ファイル形式が不正です。');
-      // falseを返す
-      return false;
+    if (is_uploaded_file($image['tmp_name']) === false) {
+        // SESSIONにエラーメッセージを設定する
+        set_error('ファイル形式が不正です。');
+        // falseを返す
+        return false;
     }
     // 画像の先頭バイトを読み、$mimetypeに結果を代入する
     $mimetype = exif_imagetype($image['tmp_name']);
     // 画像のデータ形式がPERMITTED_IMAGE_TYPESの要素に含まれない（不正な）場合
-    if( isset(PERMITTED_IMAGE_TYPES[$mimetype]) === false ){
-      // ファイル形式に関するエラーメッセージを、許容されるファイル形式を連結してセットする
-      set_error('ファイル形式は' . implode('、', PERMITTED_IMAGE_TYPES) . 'のみ利用可能です。');
-      // falseを返す
-      return false;
+    if (isset(PERMITTED_IMAGE_TYPES[$mimetype]) === false) {
+        // ファイル形式に関するエラーメッセージを、許容されるファイル形式を連結してセットする
+        set_error('ファイル形式は' . implode('、', PERMITTED_IMAGE_TYPES) . 'のみ利用可能です。');
+        // falseを返す
+        return false;
     }
     // 画像データ形式が適正な場合、trueを返す
     return true;
-  }
+}
+
+// -------画像のアップロード---------
+function upload_img($array, $filepath)
+{
+    $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
+    $new_img = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1); //アップロードされたファイルの拡張子を取得
+    $file = $filepath . $new_img;
+    if (!empty($_FILES['img']['name'])) { //ファイルが選択されていれば$imageにファイル名を代入
+        move_uploaded_file($_FILES['img']['tmp_name'], $filepath . $new_img); //imagesディレクトリにファイル保存
+        if (exif_imagetype($file)) { //画像ファイルかのチェック
+            $message = '画像をアップロードしました';
+        } else {
+            $message = '画像ファイルではありません';
+        }
+    }
+    return $new_img;
+}
+
+// 登録済みProfileのUPDATE
+function update_profile($db, $member_id, $name, $thumbnail, $blood_type, $favorite){
+    // SQL文の作成
+    // $sql = 'INSERT INTO 03_member_profiles (member_name, member_thumbnail, blood_type, favorite) VALUES(?, ?, ?, ?);';
+    $sql = 'UPDATE `03_member_profiles` SET `member_name`= ?, `member_thumbnail`= ?
+                    ,`blood_type`= ?, `favorite`= ? WHERE `member_id`= ?';
+    // SQL文を実行する準備
+    $stmt = $db->prepare($sql);
+    // SQL文のプレースホルダに値をバインド
+    $stmt->bindValue(1, $name, PDO::PARAM_STR);
+    $stmt->bindValue(2, $thumbnail, PDO::PARAM_STR);
+    $stmt->bindValue(3, $blood_type, PDO::PARAM_STR);
+    $stmt->bindValue(4, $favorite, PDO::PARAM_STR);
+    $stmt->bindValue(5, $member_id, PDO::PARAM_INT);
+    // SQLを実行
+    $stmt->execute();
+}

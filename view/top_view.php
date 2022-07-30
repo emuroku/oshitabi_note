@@ -107,9 +107,56 @@
                                   <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
                                     style="width:2rem;height:2rem;" data-toggle="modal" 
                                     data-target="#modal-member-del' . $line[0]['member_id'] . '">-</button>'); ?>
-                                    <button class="btn btn-primary" data-dismiss="modal">Edit</button>
+                                  <!-- メンバー編集ボタン -->
+                                  <?php print('<button class="btn btn-primary" data-toggle="modal" data-target="#modal-member-edit-' . $line[0]['member_id'].'"'); ?>>Edit</button>
                                 </div>
                                  <!-- Profile Modal フッタ ここまで -->
+
+                                 <!-- メンバー編集Modalフォーム -->
+                                 <?php print('<div class="modal fade" id="modal-member-edit-' . $line[0]['member_id'] . '">'); ?>
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <h5 class="modal-title" id="">プロフィールを編集</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <form method="post" enctype="multipart/form-data">
+                                      <div class="modal-body">
+                                          <div class="form-group col-12">
+                                                  <div class="name">名前
+                                                    <?php print('<input type="text" class="form-control form-control-lg" name="name" required="required" value="' 
+                                                     . $line[0]['member_name'] . '">');?>
+                                                  </div>     
+                                                  <div class="add_member_thumbnail">サムネイル
+                                                  <input type="file" name="img" required="required">
+                                                  </div>
+                                                  <div class="name">推し
+                                                    <?php print('<input type="text" class="form-control form-control-lg" name="favorite" required="required" value="' 
+                                                      . $line[0]['favorite'] . '">');?>
+                                                  </div>
+                                                  <div>血液型:
+                                                    <select name="blood_type">
+                                                    <option value="A">A</option>
+                                                    <option value="B">B</option>
+                                                    <option value="O">O</option>
+                                                    <option value="AB">AB</option>
+                                                    <option value="不明">不明</option>            
+                                                    </select>
+                                                </div>
+                                          </div>
+                                  </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
+                                        <div class="submit"><button class="btn btn-primary" id="btn_submit">更新する</button>
+                                        <input type = "hidden" name = "sql_order" value = "update_profile">
+                                        <input type = "hidden" name = "update_member_id" value = "<?php print($line[0]['member_id']); ?>">
+                                      </div>
+                                      </form>
+                                      </div>
+                                    </div>
+                                </div></div>
                                  
                                  <!-- ここからメンバー削除確認ダイアログ -->
                                   <?php print('<div class="modal fade" id="modal-member-del' . $line[0]['member_id'] . '">'); ?>
