@@ -68,20 +68,9 @@ if (is_post_available($_POST) === true) {
         $new_member_blood_type = $_POST['blood_type'];
         $new_member_favorite = $_POST['favorite'];
 
-                // -------画像のアップロード---------
-        $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
-        $new_member_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
-        $file = '../html/assets/img/members/' . $new_member_thumbnail;
-        if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
-            move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/members/' . $new_member_thumbnail);//imagesディレクトリにファイル保存
-            if (exif_imagetype($file)) {//画像ファイルかのチェック
-                $message = '画像をアップロードしました';
-            } else {
-                $message = '画像ファイルではありません';
-            }
-        }
+        // -------サムネ画像のアップロード---------
+        $new_member_thumbnail = upload_img($_FILES, '../html/assets/img/members/');
 
-        // -------ここまで画像アップロード処理--------
         // member_profileテーブルへ書き込み処理
         insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
         // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
@@ -152,10 +141,19 @@ if (is_post_available($_POST) === true) {
             $delete_plan_id = $_POST['delete_id'];
             delete_plan($db, $delete_plan_id);
             $dialog = 'プランを削除しました';
-        } elseif ($sql_order === 'delete_member') {
+        } 
+        elseif ($sql_order === 'delete_member') {
             // memberを削除する場合
             $delete_member_id = $_POST['delete_id'];
             delete_member($db, $delete_member_id);
+        }
+        elseif ($sql_order === 'update_profile'){
+            // 登録済みprofileをupdateする場合
+            $update_member_id = $_POST['update_member_id'];
+            $update_member_name = $_POST['name'];
+            $update_member_thumbnail = $_POST[''];
+            $update_member_name = $_POST['name'];
+            update_profile($db, $update_member_id);
         }
     }
 }
