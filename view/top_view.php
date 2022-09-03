@@ -380,12 +380,12 @@
                             </select>
                             </div>
                             <div class="name">開始時間
-                                <input type="datetime-local" class="form-control form-control-lg" name="start_time" required="required">
+                                <input type="datetime-local" class="form-control form-control-lg" name="start_time" required="required" value="<?php print($travel_info[0]['start_date'] . " 00:00:00"); ?>">
                             </div>
-                            <div class="name">終了時間
+                            <div class="name">終了時間(Option)
                                 <input type="datetime-local" class="form-control form-control-lg" name="end_time">
                             </div>
-                            <div class="name">サイトリンク
+                            <div class="name">サイトリンク(Option)
                                 <input type="text" class="form-control form-control-lg" name="url">
                             </div>
                         </div>
