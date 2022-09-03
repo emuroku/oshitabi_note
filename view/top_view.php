@@ -406,7 +406,7 @@
             <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>"
                       area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
             <!-- <input id="copyTarget" type="text" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>" readonly> -->
-            <button type="button" class="btn btn-primary" onclick="copyToClipboard()">Copy</button>
+            <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
   </div>
   </div>
   <script>
@@ -421,7 +421,7 @@
             document.execCommand("Copy");
 
             // コピーをお知らせする
-            alert("コピーしました");
+            alert("URLをコピーしました");
         }
   </script>
 </body>

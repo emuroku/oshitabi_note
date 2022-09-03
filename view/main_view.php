@@ -84,10 +84,6 @@
                                     <label for="days">日間</label>
                                 </div>
                             </div>
-                            <div class="add_member_thumbnail">サムネイル<br/>
-                                <!-- <small>設定しない場合、デフォルトのサムネイルフォトが表示されます</small> -->
-                              <input type="file" name="img">
-                            </div>
                         </div>
                         </div>
                         <div class="modal-footer">
@@ -98,7 +94,7 @@
                   </form>
                 </div>
               </div>
-       </div>
+  </div>
     </div>
 </body>
 <!-- <footer>
