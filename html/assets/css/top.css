@@ -93,27 +93,21 @@
     margin-bottom: 20px;
 }
 
-button{
-    width: 140px;
-    margin: 10px 0;
+.sharelink_button{
+    display: flex;
 }
 
-.input_birthday{
-    margin: 20px;
+.sharelink{
+    padding: 10px;
+}
+
+button{
+    width: 140px;
+    margin: 10px;
 }
 
 .submit{
     margin: 40px;
-}
-
-.birthday{
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-}
-
-.birth_txt{
-    margin: 5px;
 }
 
 .copyright{

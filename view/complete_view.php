@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# website: http://ogp.me/ns/website#">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,22 +8,22 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    
+
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 
-    
+
     <!-- オフライン時作業用 -->
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/complete.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/main.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
-    
+
     <!-- Modal -->
-    
+
     <!-- icon CSS -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
@@ -50,18 +51,42 @@
 
     <!-- container -->
     <div class="container">
-          <div class="travel_title">
+        <div class="travel_title">
             <h3>新しい旅が登録されました！</h3>
             <p>以下のURLを仲間にシェアしてください。</p>
-            <textarea class="form-control"
-                        area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?> </textarea>
-          </div>
-            <a href="<?php print('http://oshitabinote.com/top.php?h=' . $added_url_param); ?>" target="_blank"><button type="button" class="btn btn-primary link_newtravel">noteを見る</button>
-          </div>
+            <div class="sharelink_button">
+                <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?>"
+                      area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?> </textarea>
+                <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
+            </div>
+        </div>
+  <script>
+        function copyToClipboard() {
+            // コピー対象をJavaScript上で変数として定義する
+            var copyTarget = document.getElementById("copyTarget");
+
+            // コピー対象のテキストを選択する
+            copyTarget.select();
+
+            // 選択しているテキストをクリップボードにコピーする
+            document.execCommand("Copy");
+
+            // コピーをお知らせする
+            alert("URLをコピーしました");
+        }
+  </script>
+        <a href="<?php print('http://oshitabinote.com/top.php?h=' . $added_url_param); ?>" target="_blank"><button type="button" class="btn btn-primary link_newtravel">noteを見る</button>
+    </div>
 </body>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+<script src="index.js"></script>
 <!-- <footer>
     <div class="copyright">
         <small>@ m610310</small>
     </div>
 </footer> -->
+
 </html>
