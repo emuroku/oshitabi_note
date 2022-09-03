@@ -56,7 +56,7 @@
             <p>以下のURLを仲間にシェアしてください。</p>
             <div class="sharelink_button">
                 <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?>"
-                      area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?> </textarea>
+                      area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($added_url_param); ?> </textarea>
                 <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
             </div>
         </div>
