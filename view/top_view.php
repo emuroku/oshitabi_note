@@ -404,7 +404,7 @@
   <p>このnoteのURL</p>                        
   <div class="sharelink_button">
             <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>"
-                      area-label="With textarea"> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
+                      area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
             <!-- <input id="copyTarget" type="text" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>" readonly> -->
             <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
   </div>
