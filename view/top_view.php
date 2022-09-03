@@ -401,7 +401,9 @@
   </div>
                           </div>
   <div class="sharelink">
-  <p>このnoteのURL</p>                        
+  <!-- <p><i class="fas fa-share-alt"></i>このnoteのURL</p>                         -->
+  <p><i class="fas fa-share-square"></i>このnoteのURL</p>                        
+  
   <div class="sharelink_button">
             <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>"
                       area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
