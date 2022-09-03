@@ -156,6 +156,17 @@ if (is_post_available($_POST) === true) {
             $update_member_favorite = $_POST['favorite'];
             update_profile($db, $update_member_id, $update_member_name, 
                             $update_member_thumbnail, $update_member_blood_type, $update_member_favorite);
+        }elseif ($sql_order === 'update_plan'){
+            // 登録済みplanをupdateする場合
+            $update_plan_id = $_POST['update_plan_id'];
+            $update_plan_name = $_POST['title'];
+            $update_plan_category = $_POST['category'];
+            $update_plan_start_time = $_POST['start_time'];
+            $update_plan_end_time = $_POST['end_time'];
+            $update_plan_day_num = $_POST['day_num'];
+            $update_plan_url = $_POST['url'];
+            update_plan($db, $update_plan_id, $update_plan_name, 
+                            $update_plan_category, $update_plan_start_time, $update_plan_end_time, $update_plan_day_num, $update_plan_url);
         }
     }
 }
