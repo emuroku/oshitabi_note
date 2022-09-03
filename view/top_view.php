@@ -54,13 +54,9 @@
     
     <!-- サムネイル     -->
      <img src="<?php 
-     // thumbnailが空っぽでなければ指定の画像を表示
-        if ($travel_info[0]['thumbnail'] !== '') {
-            print(IMG_PATH . 'thumbnail/' . $travel_info[0]['thumbnail']);
-        }else{
-          // thumbnailが空っぽならランダムのサンプル画像を表示
+          // thumbnailをランダムで表示
             print(IMG_PATH . 'thumbnail/sample/thumbnail_' . (mt_rand(1, 6)) . '.jpg');
-        }  ?>" class="travel_thumbnail">
+          ?>" class="travel_thumbnail">
 
      <!-- メンバー -->
      <div class="members">
