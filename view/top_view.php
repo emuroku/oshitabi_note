@@ -274,7 +274,7 @@
               ?>
 
             </div>
-            <div class="col-6">
+            <div class="col-7">
               <!-- categoryに応じたアイコン表示  -->
               <?php if ($plan['plan_category'] == 1) {
                 print('<i class="fas fa-plane"></i>');
@@ -296,17 +296,21 @@
                 print('<i class="fas fa-synagogue"></i>');
               } ?>
               <?php print($plan['plan_name']); ?></h4>
-            </div>
-            <div class="plan_button col-4">
+
               <!-- リンクボタン -->
               <!-- plan_urlが設定されているときのみボタンを表示 -->
               <?php if ($plan['plan_url'] != ''){
                 print("<a href=" . $plan['plan_url'] . ' target="_blank">
-                <button type="button" class="btn btn-info  w-auto mt-3" size="15px">Link
+                <button type="button" class="btn btn-light  w-auto mt-3" size="15px">Link
                 </button></a>');
               } ?>
 
-              <!-- 削除ボタン -->
+            </div>
+            <div class="plan_button col-3">
+              <!-- plan編集ボタン -->
+              <?php print('<button class="btn btn-primary" data-toggle="modal" data-target="#modal-plan-edit-' . $plan['plan_id'] . '"'); ?>>Edit</button>
+
+              <!-- plan削除ボタン -->
               <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
               style="width:1.5rem;height:1.5rem;" data-toggle="modal" 
               data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
