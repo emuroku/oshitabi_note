@@ -232,6 +232,7 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
           <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
           </div>
+          <!-- <input type="hidden" name="key" value="<?php echo htmlspecialchars($_SESSION['key'], ENT_QUOTES); ?>"> -->
       </form>
     </div>
   </div>
