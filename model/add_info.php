@@ -277,3 +277,22 @@ function update_profile($db, $member_id, $name, $thumbnail, $blood_type, $favori
     // SQLを実行
     $stmt->execute();
 }
+
+// 登録済みplanのUPDATE
+function update_plan($db, $plan_id, $name, $category, $start_time, $end_time, $day_num, $url){
+    // SQL文の作成
+    $sql = 'UPDATE `03_plans` SET `plan_name`= ?, `plan_category`= ?
+                    ,`start_time`= ?, `end_time`= ?, `day_num`= ?, `plan_url`= ? WHERE `plan_id`= ?';
+    // SQL文を実行する準備
+    $stmt = $db->prepare($sql);
+    // SQL文のプレースホルダに値をバインド
+    $stmt->bindValue(1, $name, PDO::PARAM_STR);
+    $stmt->bindValue(2, $category, PDO::PARAM_INT);
+    $stmt->bindValue(3, $start_time, PDO::PARAM_STR);
+    $stmt->bindValue(4, $end_time, PDO::PARAM_STR);
+    $stmt->bindValue(5, $day_num, PDO::PARAM_INT);
+    $stmt->bindValue(6, $url, PDO::PARAM_STR);
+    $stmt->bindValue(7, $plan_id, PDO::PARAM_INT);
+    // SQLを実行
+    $stmt->execute();
+}

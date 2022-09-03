@@ -299,7 +299,7 @@
 
               <!-- リンクボタン -->
               <!-- plan_urlが設定されているときのみボタンを表示 -->
-              <?php if ($plan['plan_url'] != ''){
+              <?php if ($plan['plan_url'] != '') {
                 print("<a href=" . $plan['plan_url'] . ' target="_blank">
                 <button type="button" class="btn btn-light  w-auto mt-3" size="15px">Link
                 </button></a>');
@@ -316,29 +316,100 @@
               data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
 
             </div>
-            <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
-            <div class="modal-dialog">
+            <!-- ここからプラン編集モーダル -->
+            <?php print('<div class="modal fade" id="modal-plan-edit-' . $plan['plan_id'] . '">'); ?>
+            <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3 class="modal-title">プランを削除</h3>
-                  <button class="close" data-dismiss="modal">
+                  <h5 class="modal-title" id="">プランを編集</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
-                  このプランを削除していいですか？
-                </div>
-                <div class="modal-footer">
-                  <form method="post">
-                    <input type="submit" value="OK" button class="btn btn-primary">
-                    <input type="hidden" name="sql_order" value="delete_plan">
-                    <input type="hidden" name="delete_id" value="<?php print($plan['plan_id']); ?>">
-                  </form>
-                </div>
+                <!-- form -->
+                <form method="post" enctype="multipart/form-data">
+                  <div class="modal-body">
+                    <div class="form-group col-12">
+                      <div>
+                        <select name="day_num">
+                          <?php for ($i = 1; $i <= $days; $i++) {
+                          ?>
+                            <option value="<?php print($i); ?>"
+                            <?php 
+                            // 初期値を設定済みのnumにする
+                            if($i == $plan['day_num']){
+                              print(' selected');
+                            }
+                            ?>
+                            ><?php print ($i) . '日目'; ?></option>
+                          <?php
+                          } ?>
+                        </select>
+                      </div>
+                      <div class="name">タイトル
+                        <input type="text" class="form-control form-control-lg" name="title" required="required" value="<?php print($plan['plan_name']); ?>">
+                      </div>
+                      <div>カテゴリ
+                        <select name="category">
+                          <option value="1" <?php if($plan['plan_category'] == "1"){print('selected');} ?>>移動</option>
+                          <option value="2" <?php if($plan['plan_category'] == "2"){print('selected');} ?>>観光</option>
+                          <option value="3" <?php if($plan['plan_category'] == "3"){print('selected');} ?>>食事</option>
+                          <option value="4" <?php if($plan['plan_category'] == "4"){print('selected');} ?>>宿泊</option>
+                          <option value="5" <?php if($plan['plan_category'] == "5"){print('selected');} ?>>ショッピング</option>
+                          <option value="6" <?php if($plan['plan_category'] == "6"){print('selected');} ?>>試合</option>
+                          <option value="7" <?php if($plan['plan_category'] == "7"){print('selected');} ?>>ライブ</option>
+                          <option value="8" <?php if($plan['plan_category'] == "8"){print('selected');} ?>>ファンミ</option>
+                          <option value="9" <?php if($plan['plan_category'] == ""){print('selected');} ?>>聖地巡礼</option>
+                          <option value="10" <?php if($plan['plan_category'] == "10"){print('selected');} ?>>そのほか</option>
+                        </select>
+                      </div>
+                      <div class="name">開始時間
+                        <input type="datetime-local" class="form-control form-control-lg" name="start_time" required="required" value="<?php print($plan['start_time']); ?>">
+                      </div>
+                      <div class="name">終了時間(Option)
+                        <input type="datetime-local" class="form-control form-control-lg" name="end_time"  value="<?php print($plan['end_time']); ?>">
+                      </div>
+                      <div class="name">サイトリンク(Option)
+                        <input type="text" class="form-control form-control-lg" name="url" value="<?php print($plan['plan_url']);?>">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
+                    <div class="submit"><button class="btn btn-primary" id="btn_submit">更新する</button>
+                      <input type="hidden" name="sql_order" value="update_plan">
+                      <input type="hidden" name="update_plan_id" value="<?php print($plan['plan_id']); ?>">
+                    </div>
+                </form>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- ここからプラン削除モーダル -->
+        <?php print('<div class="modal fade" id="modal' . $plan['plan_id'] . '">'); ?>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title">プランを削除</h3>
+              <button class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              このプランを削除していいですか？
+            </div>
+            <div class="modal-footer">
+              <form method="post">
+                <input type="submit" value="OK" button class="btn btn-primary">
+                <input type="hidden" name="sql_order" value="delete_plan">
+                <input type="hidden" name="delete_id" value="<?php print($plan['plan_id']); ?>">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
       </div>
       </div>
       </div>
