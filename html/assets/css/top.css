@@ -55,7 +55,13 @@
 }
 
 .card-body{
-    padding: -5px;
+    padding: 2px;
+    margin: 2px;
+}
+
+.del_plan{
+    margin: 0;
+    padding: 0;
 }
 
 .plan_day_header{
@@ -96,6 +102,7 @@
 
 .sharelink_button{
     display: flex;
+    justify-content: space-between;
 }
 
 .sharelink{

@@ -42,7 +42,7 @@
     <nav class="navbar navbar-expand-sm justify-content-center navbar-light bg-light">
         <!-- <a class="navbar-brand" href="top.php"> -->
         <div class="title">
-            <h4> 推し旅note </h4>
+            <a href="http://oshitabinote.com/main.php" style="color: #666666"><h4>推し旅note</h4></a>
         </div>
         <!-- </a> -->
     </nav>
