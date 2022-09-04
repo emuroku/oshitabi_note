@@ -271,11 +271,11 @@
         <div class="caption">
           <div class="card_plans">
             <div class="col-2">
-              <?php print date('m月d日 H:i', strtotime($plan['start_time']));
+              <?php print date('m/d H:i', strtotime($plan['start_time']));
               ?>
 
             </div>
-            <div class="col-7">
+            <div class="col-8">
               <!-- categoryに応じたアイコン表示  -->
               <?php if ($plan['plan_category'] == 1) {
                 print('<i class="fas fa-plane"></i>');
@@ -307,14 +307,15 @@
               } ?>
 
             </div>
-            <div class="plan_button col-3">
+            <div class="plan_button col-2">
               <!-- plan編集ボタン -->
-              <?php print('<button class="btn btn-primary" data-toggle="modal" data-target="#modal-plan-edit-' . $plan['plan_id'] . '"'); ?>>Edit</button>
+              <?php print('<button class="btn btn-primary btn-sm" style="margin: 0; height:30px;" data-toggle="modal" data-target="#modal-plan-edit-' . $plan['plan_id'] . '"'); ?>>Edit</button>
 
               <!-- plan削除ボタン -->
-              <?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
-              style="width:1.5rem;height:1.5rem;" data-toggle="modal" 
+              <div class="del_plan"><?php print('<button type="button" class="btn btn-danger rounded-circle p-0" 
+              style="width:1.5rem;height:1.5rem; margin: 0 -20px 0 2px;" data-toggle="modal" 
               data-target="#modal' . $plan['plan_id'] . '">-</button>'); ?>
+              </div>
 
             </div>
             <!-- ここからプラン編集モーダル -->
@@ -335,14 +336,12 @@
                         <select name="day_num">
                           <?php for ($i = 1; $i <= $days; $i++) {
                           ?>
-                            <option value="<?php print($i); ?>"
-                            <?php 
-                            // 初期値を設定済みのnumにする
-                            if($i == $plan['day_num']){
-                              print(' selected');
-                            }
-                            ?>
-                            ><?php print ($i) . '日目'; ?></option>
+                            <option value="<?php print($i); ?>" <?php
+                                                                // 初期値を設定済みのnumにする
+                                                                if ($i == $plan['day_num']) {
+                                                                  print(' selected');
+                                                                }
+                                                                ?>><?php print ($i) . '日目'; ?></option>
                           <?php
                           } ?>
                         </select>
@@ -352,26 +351,46 @@
                       </div>
                       <div>カテゴリ
                         <select name="category">
-                          <option value="1" <?php if($plan['plan_category'] == "1"){print('selected');} ?>>移動</option>
-                          <option value="2" <?php if($plan['plan_category'] == "2"){print('selected');} ?>>観光</option>
-                          <option value="3" <?php if($plan['plan_category'] == "3"){print('selected');} ?>>食事</option>
-                          <option value="4" <?php if($plan['plan_category'] == "4"){print('selected');} ?>>宿泊</option>
-                          <option value="5" <?php if($plan['plan_category'] == "5"){print('selected');} ?>>ショッピング</option>
-                          <option value="6" <?php if($plan['plan_category'] == "6"){print('selected');} ?>>試合</option>
-                          <option value="7" <?php if($plan['plan_category'] == "7"){print('selected');} ?>>ライブ</option>
-                          <option value="8" <?php if($plan['plan_category'] == "8"){print('selected');} ?>>ファンミ</option>
-                          <option value="9" <?php if($plan['plan_category'] == ""){print('selected');} ?>>聖地巡礼</option>
-                          <option value="10" <?php if($plan['plan_category'] == "10"){print('selected');} ?>>そのほか</option>
+                          <option value="1" <?php if ($plan['plan_category'] == "1") {
+                                              print('selected');
+                                            } ?>>移動</option>
+                          <option value="2" <?php if ($plan['plan_category'] == "2") {
+                                              print('selected');
+                                            } ?>>観光</option>
+                          <option value="3" <?php if ($plan['plan_category'] == "3") {
+                                              print('selected');
+                                            } ?>>食事</option>
+                          <option value="4" <?php if ($plan['plan_category'] == "4") {
+                                              print('selected');
+                                            } ?>>宿泊</option>
+                          <option value="5" <?php if ($plan['plan_category'] == "5") {
+                                              print('selected');
+                                            } ?>>ショッピング</option>
+                          <option value="6" <?php if ($plan['plan_category'] == "6") {
+                                              print('selected');
+                                            } ?>>試合</option>
+                          <option value="7" <?php if ($plan['plan_category'] == "7") {
+                                              print('selected');
+                                            } ?>>ライブ</option>
+                          <option value="8" <?php if ($plan['plan_category'] == "8") {
+                                              print('selected');
+                                            } ?>>ファンミ</option>
+                          <option value="9" <?php if ($plan['plan_category'] == "") {
+                                              print('selected');
+                                            } ?>>聖地巡礼</option>
+                          <option value="10" <?php if ($plan['plan_category'] == "10") {
+                                                print('selected');
+                                              } ?>>そのほか</option>
                         </select>
                       </div>
                       <div class="name">開始時間
                         <input type="datetime-local" class="form-control form-control-lg" name="start_time" required="required" value="<?php print($plan['start_time']); ?>">
                       </div>
                       <div class="name">終了時間(Option)
-                        <input type="datetime-local" class="form-control form-control-lg" name="end_time"  value="<?php print($plan['end_time']); ?>">
+                        <input type="datetime-local" class="form-control form-control-lg" name="end_time" value="<?php print($plan['end_time']); ?>">
                       </div>
                       <div class="name">サイトリンク(Option)
-                        <input type="text" class="form-control form-control-lg" name="url" value="<?php print($plan['plan_url']);?>">
+                        <input type="text" class="form-control form-control-lg" name="url" value="<?php print($plan['plan_url']); ?>">
                       </div>
                     </div>
                   </div>
