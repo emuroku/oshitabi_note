@@ -102,6 +102,7 @@
 
 .sharelink_button{
     display: flex;
+    justify-content: space-between;
 }
 
 .sharelink{

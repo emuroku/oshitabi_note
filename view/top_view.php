@@ -505,9 +505,11 @@
   <p><i class="fas fa-share-square"></i>このnoteのURL</p>
 
   <div class="sharelink_button">
-    <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>" area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
+    <textarea class="form-control" id="copyTarget" 
+    value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>"
+     area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
     <!-- <input id="copyTarget" type="text" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>" readonly> -->
-    <button type="button" class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
+    <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px -10px 10px 10px;" onclick="copyToClipboard()">Copy</button>
   </div>
 </div>
 <script>
