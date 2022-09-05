@@ -280,6 +280,10 @@ function update_profile($db, $member_id, $name, $thumbnail, $blood_type, $favori
 
 // 登録済みplanのUPDATE
 function update_plan($db, $plan_id, $name, $category, $start_time, $end_time, $day_num, $url){
+    // $end_timeが空っぽだった場合、formatエラーを起こすのでNULLに変換
+    if($end_time == ''){
+        $end_time = NULL;
+    }
     // SQL文の作成
     $sql = 'UPDATE `03_plans` SET `plan_name`= ?, `plan_category`= ?
                     ,`start_time`= ?, `end_time`= ?, `day_num`= ?, `plan_url`= ? WHERE `plan_id`= ?';
