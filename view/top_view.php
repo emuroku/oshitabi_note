@@ -36,7 +36,9 @@
   <nav class="navbar navbar-expand-sm justify-content-center navbar-light bg-light">
     <!-- <a class="navbar-brand" href="top.php"> -->
     <div class="title">
-      <a href="http://oshitabinote.com/main.php" style="color: #666666"><h4>推し旅note</h4></a>
+      <a href="http://oshitabinote.com/main.php" style="color: #666666">
+        <h4>推し旅note</h4>
+      </a>
     </div>
     <!-- </a> -->
   </nav>
@@ -135,11 +137,21 @@
                               </div>
                               <div>血液型:
                                 <select name="blood_type">
-                                  <option value="A">A</option>
-                                  <option value="B">B</option>
-                                  <option value="O">O</option>
-                                  <option value="AB">AB</option>
-                                  <option value="不明">不明</option>
+                                  <option value="A" <?php if ($line[0]['blood_type'] == "A") {
+                                                      print(" selected");
+                                                    } ?>>A</option>
+                                  <option value="B" <?php if ($line[0]['blood_type'] == "B") {
+                                                      print(" selected");
+                                                    } ?>>B</option>
+                                  <option value="O" <?php if ($line[0]['blood_type'] == "O") {
+                                                      print(" selected");
+                                                    } ?>>O</option>
+                                  <option value="AB" <?php if ($line[0]['blood_type'] == "AB") {
+                                                      print(" selected");
+                                                    } ?>>AB</option>
+                                  <option value="不明" <?php if ($line[0]['blood_type'] == "不明") {
+                                                      print(" selected");
+                                                    } ?>>不明</option>
                                 </select>
                               </div>
                             </div>
@@ -505,9 +517,7 @@
   <p><i class="fas fa-share-square"></i>このnoteのURL</p>
 
   <div class="sharelink_button">
-    <textarea class="form-control" id="copyTarget" 
-    value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>"
-     area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
+    <textarea class="form-control" id="copyTarget" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>" area-label="With textarea" readonly> http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?> </textarea>
     <!-- <input id="copyTarget" type="text" value="http://oshitabinote.com/top.php?h=<?php print($tmp_h_param); ?>" readonly> -->
     <button type="button" class="btn btn-secondary btn-sm" style="margin: 10px -10px 10px 10px;" onclick="copyToClipboard()">Copy</button>
   </div>
