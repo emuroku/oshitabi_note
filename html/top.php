@@ -25,7 +25,7 @@ $new_plan_url = '';
 
 // session開始
 session_start();
-// $_SESSION['key'] = md5(uniqid() . mt_rand());
+$_SESSION['key'] = md5(uniqid() . mt_rand());
 
 // CSRF対策
 $token = get_csrf_token();
@@ -63,8 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     //     header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
     // }
 
-    session_start();
-    header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
+    // session_start();
+    // header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
     
 
     if (isset($_POST['sql_order']) !== true) {
