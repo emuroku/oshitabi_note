@@ -125,6 +125,5 @@ function get_file($name){
             $result = FALSE;
         }
     }
-
     return $result;
   }

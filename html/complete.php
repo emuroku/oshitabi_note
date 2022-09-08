@@ -1,4 +1,6 @@
 <?php
+// 新しい旅を登録した直後にURLを発行するcompleteページ
+
 header('X-Frame-Options:DENY'); // クリックジャッキング対策
 
 // 定数ファイル読み込み
