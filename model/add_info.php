@@ -123,8 +123,8 @@ function get_added_travel_param($dbh)
     $stmt = $dbh->prepare($sql);
     // SQLを実行
     $stmt->execute();
-    $added_param = $stmt->fetchAll();
-    return $added_param[0]['param'];
+    $added_param = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $added_param['param'];
 }
 
 // 旅程 新規登録：POSTされたデータをbindValueしてplansテーブルへINSERTする

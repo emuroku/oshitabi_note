@@ -39,23 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $new_travel_days_num = $_POST['days'];
                 $new_travel_thumbnail = '';
 
-                // -------画像のアップロード---------
-                if ($_FILES['img']['name'] != '') {
-                    $image = uniqid(mt_rand(), true); //ファイル名をユニーク化
-                    $new_travel_thumbnail = $image . '.' . substr(strrchr($_FILES['img']['name'], '.'), 1);//アップロードされたファイルの拡張子を取得
-                    $file = '../html/assets/img/thumbnail/' . $new_travel_thumbnail;
-                    if (!empty($_FILES['img']['name'])) {//ファイルが選択されていれば$imageにファイル名を代入
-                        move_uploaded_file($_FILES['img']['tmp_name'], '../html/assets/img/thumbnail/' . $new_travel_thumbnail);//imagesディレクトリにファイル保存
-                        if (exif_imagetype($file)) {//画像ファイルかのチェック
-                            $message = '画像をアップロードしました';
-                        } else {
-                            $message = '画像ファイルではありません';
-                        }
-                    }
-                }
-
-                // -------ここまで画像アップロード処理--------
-
                 // travelsテーブルへ書き込み処理
                 insert_travel_info($db, $new_travel_title, $new_travel_start_date, $new_travel_end_date, $new_travel_days_num, $new_travel_thumbnail);
                         
