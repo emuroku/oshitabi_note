@@ -90,7 +90,6 @@ function get_info_specific_id($dbh, $table_name, $col_name, $id){
     // SQL文作成
     $sql = 'SELECT * FROM ' . $table_name 
                             . ' WHERE ' . $col_name . "=" . $id . ';'; 
-    // var_dump($sql);
     // SQL文を実行する準備
     try {
         $stmt = $dbh->prepare($sql);

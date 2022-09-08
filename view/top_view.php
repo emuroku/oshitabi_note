@@ -66,7 +66,8 @@
       <div class="col-12">
         <h4>MEMBERS</h4>
         <div class="row">
-          <?php foreach ($members_info as $line) {
+          <?php 
+          foreach ($members_info as $line) {
           ?>
             <div class="col-<?php print($memberslist_col_num); ?>">
               <div class="member_top_info">
@@ -505,6 +506,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
           <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
+          <input type="hidden" name="key" value="<?php echo htmlspecialchars($_SESSION['key'], ENT_QUOTES); ?>">
             <input type="hidden" name="sql_order" value="add_plan">
           </div>
       </form>

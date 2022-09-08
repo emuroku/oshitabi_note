@@ -72,7 +72,6 @@ function get_member_profiles($dbh, $members_list){
         // 結果配列の末尾に読み込んだレコードを追加する
         $member_profiles_list[] = $tmp_data;
     }
-    // var_dump($member_profiles_list);
     return $member_profiles_list;
     
 }
@@ -131,7 +130,6 @@ function get_plans_info($dbh, $travel_id){
      }
      // day_numの昇順に並び替える
      array_multisort($day_nums, SORT_ASC, $data);
-     // var_dump($data);
      return $data;
  }
 

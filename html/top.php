@@ -56,15 +56,15 @@ $days = $travel_info[0]['days'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 多重submit対策
-    // session_start();
-    // if (isset($_SESSION['key'], $_POST['key']) && $_SESSION['key'] == $_POST['key']) {
-    //     unset($_SESSION['key']);
-    // } else {
-    //     header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
-    // }
+    session_start();
+    if (isset($_SESSION['key'], $_POST['key']) && $_SESSION['key'] == $_POST['key']) {
+        unset($_SESSION['key']);
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
+    }
 
-    // session_start();
-    // header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
+    session_start();
+    header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
     
 
     if (isset($_POST['sql_order']) !== true) {
