@@ -109,7 +109,7 @@ function get_added_member_id($dbh)
     $stmt = $dbh->prepare($sql);
     // SQLを実行
     $stmt->execute();
-    $added_member_id = $stmt->fetchAll();
+    $added_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
     //  var_dump($added_member_id);
     return $added_member_id;
 }

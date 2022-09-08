@@ -21,14 +21,13 @@ function get_match_travel_id($db, $param){
         $stmt->bindValue(1, $param, PDO::PARAM_STR);
         // SQLを実行
         $stmt->execute();
-        $tmp_data = $stmt->fetchAll();
-        // var_dump($tmp_data[0]);
+        $tmp_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($tmp_data[0] === NULL){
+        if($tmp_data['travel_id'] === NULL){
             return false;
         }
 
-        return $tmp_data[0]['travel_id'];
+        return $tmp_data['travel_id'];
 
     } catch (PDOException $e){
         // try処理中にエラーが発生した場合は、エラーメッセージを設定
