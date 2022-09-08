@@ -44,6 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                 $db -> commit();
                 $insert_result = true; // 登録完了フラグをTRUEにする
+                
             } catch (PDOException $e) {
                 // ロールバック処理
                 echo 'トランザクション中のエラーが発生しました。理由: ' . $e -> getMessage();
