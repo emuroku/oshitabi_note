@@ -56,15 +56,15 @@ $days = $travel_info[0]['days'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // 多重submit対策
-    // session_start();
-    // if (isset($_SESSION['key'], $_POST['key']) && $_SESSION['key'] == $_POST['key']) {
-    //     unset($_SESSION['key']);
-    // } else {
-    //     header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
-    // }
+    session_start();
+    if (isset($_SESSION['key'], $_POST['key']) && $_SESSION['key'] == $_POST['key']) {
+        unset($_SESSION['key']);
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
+    }
 
-    // session_start();
-    // header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
+    session_start();
+    header("Location: " . $_SERVER['PHP_SELF'] . "?h=" . $travel_info[0]['param']);
     
 
     if (isset($_POST['sql_order']) !== true) {
@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 insert_member_profile($db, $new_member_name, $new_member_thumbnail, $new_member_blood_type, $new_member_favorite);
                 // profileテーブルに書き込んだmember_id（AUTO_INCREMENT）の取得
                 $added_member_id_array = get_added_member_id($db);
-                $added_member_id = $added_member_id_array[0]['LAST_INSERT_ID()'];
+                $added_member_id = $added_member_id_array['LAST_INSERT_ID()'];
 
                 // membersテーブルへtravel_idと紐づけて登録
                 insert_member($db, $travel_id, $added_member_id);

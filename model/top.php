@@ -21,14 +21,13 @@ function get_match_travel_id($db, $param){
         $stmt->bindValue(1, $param, PDO::PARAM_STR);
         // SQLを実行
         $stmt->execute();
-        $tmp_data = $stmt->fetchAll();
-        // var_dump($tmp_data[0]);
+        $tmp_data = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if($tmp_data[0] === NULL){
+        if($tmp_data['travel_id'] === NULL){
             return false;
         }
 
-        return $tmp_data[0]['travel_id'];
+        return $tmp_data['travel_id'];
 
     } catch (PDOException $e){
         // try処理中にエラーが発生した場合は、エラーメッセージを設定
@@ -73,7 +72,6 @@ function get_member_profiles($dbh, $members_list){
         // 結果配列の末尾に読み込んだレコードを追加する
         $member_profiles_list[] = $tmp_data;
     }
-    // var_dump($member_profiles_list);
     return $member_profiles_list;
     
 }
@@ -132,7 +130,6 @@ function get_plans_info($dbh, $travel_id){
      }
      // day_numの昇順に並び替える
      array_multisort($day_nums, SORT_ASC, $data);
-     // var_dump($data);
      return $data;
  }
 

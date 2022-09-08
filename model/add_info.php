@@ -6,7 +6,7 @@ require_once MODEL_PATH . 'functions.php';
 // topページ用関数ファイル読み込み
 require_once MODEL_PATH . 'top.php';
 
-// 旅程 新規登録：POSTされたデータをbindValueしてplansテーブルへINSERTする
+// 旅程 新規登録：POSTされたデータをbindValueしてtravelsテーブルへINSERTする
 function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $thumbnail)
 {
 
@@ -96,7 +96,7 @@ function insert_member_profile($dbh, $name, $thumbnail, $blood_type, $favorite)
 // ランダムURL用の文字列を生成する
 function generate_new_url_str()
 {
-    $new_str = uniqid(mt_rand(), true);
+    $new_str = uniqid(mt_rand());
     return $new_str;
 }
 
@@ -109,7 +109,7 @@ function get_added_member_id($dbh)
     $stmt = $dbh->prepare($sql);
     // SQLを実行
     $stmt->execute();
-    $added_member_id = $stmt->fetchAll();
+    $added_member_id = $stmt->fetch(PDO::FETCH_ASSOC);
     //  var_dump($added_member_id);
     return $added_member_id;
 }
@@ -123,8 +123,8 @@ function get_added_travel_param($dbh)
     $stmt = $dbh->prepare($sql);
     // SQLを実行
     $stmt->execute();
-    $added_param = $stmt->fetchAll();
-    return $added_param[0]['param'];
+    $added_param = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $added_param['param'];
 }
 
 // 旅程 新規登録：POSTされたデータをbindValueしてplansテーブルへINSERTする
