@@ -256,13 +256,9 @@
 </div>
 <!-- navigation -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="mainNav">
     <ul class="navbar-nav">
       <li class="nav-item nav-link">旅程</li>
-      <!-- <li class="nav-item"><a href="#" class="nav-link">もちもの</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">写真</a></li> -->
     </ul>
-  </div>
 </nav>
 
 
