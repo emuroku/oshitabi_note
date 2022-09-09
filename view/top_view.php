@@ -17,7 +17,7 @@
 
   <!-- オフライン時作業用 -->
   <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
-  <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
+  <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'top.css'); ?>">
   <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
 
   <!-- Modal -->
@@ -69,12 +69,12 @@
           <?php 
           foreach ($members_info as $line) {
           ?>
-            <div class="col-<?php print($memberslist_col_num); ?>">
+            <div class="col-<?php print($memberslist_col_num); ?>" style="padding: 0;">
               <div class="member_top_info">
                 <p><?php print($line[0]['member_name']); ?></p>
                 <img src="<?php print(IMG_PATH . 'members/' . $line[0]['member_thumbnail']); ?>" class="trim-image-to-circle">
                 <div class="button_profile">
-                  <?php print('<button class="btn btn-light  w-auto mt-2" data-toggle="modal" data-target="#modal' . $line[0]['member_id'] . '"'); ?>>PROFILE</button>
+                  <?php print('<button class="btn btn-light  w-auto mt-2" style="margin: 0;" data-toggle="modal" data-target="#modal' . $line[0]['member_id'] . '"'); ?>>PROFILE</button>
                 </div>
                 <?php print('<div class="modal fade" id="modal' . $line[0]['member_id'] . '"'); ?>>
                 <div class="modal-dialog">
