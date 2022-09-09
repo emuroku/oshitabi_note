@@ -25,7 +25,8 @@ function insert_travel_info($dbh, $title, $start_date, $end_date, $days_num, $th
     }
 
     // SQL文の作成
-    $sql = 'INSERT INTO 03_travels (travel_name, param, thumbnail, start_date, end_date, days) VALUES(?, ?, ?, ?, ?, ?);';
+    $sql = 'INSERT INTO 03_travels (travel_name, param, thumbnail, start_date, end_date, days) 
+            VALUES(?, ?, ?, ?, ?, ?);';
     // SQL文を実行する準備
     $stmt = $dbh->prepare($sql);
     // SQL文のプレースホルダに値をバインド
@@ -259,11 +260,11 @@ function upload_img($array, $filepath)
     }
     return $new_img;
 }
+// -------------- ここまで画像アップロード処理 -----------------
 
 // 登録済みProfileのUPDATE
 function update_profile($db, $member_id, $name, $thumbnail, $blood_type, $favorite){
     // SQL文の作成
-    // $sql = 'INSERT INTO 03_member_profiles (member_name, member_thumbnail, blood_type, favorite) VALUES(?, ?, ?, ?);';
     $sql = 'UPDATE `03_member_profiles` SET `member_name`= ?, `member_thumbnail`= ?
                     ,`blood_type`= ?, `favorite`= ? WHERE `member_id`= ?';
     // SQL文を実行する準備

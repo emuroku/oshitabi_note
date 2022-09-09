@@ -40,7 +40,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $new_travel_thumbnail = '';
 
                 // travelsテーブルへ書き込み処理
-                insert_travel_info($db, $new_travel_title, $new_travel_start_date, $new_travel_end_date, $new_travel_days_num, $new_travel_thumbnail);
+                insert_travel_info($db, $new_travel_title, $new_travel_start_date, 
+                    $new_travel_end_date, $new_travel_days_num, $new_travel_thumbnail);
                         
                 $db -> commit();
                 $insert_result = true; // 登録完了フラグをTRUEにする
