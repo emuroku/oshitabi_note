@@ -134,11 +134,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
 
                 // member_profileテーブルへ書き込み処理
-                insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, $new_plan_start_time, $new_plan_end_time, $new_plan_url);
+                insert_plan($db, $travel_id, $new_plan_day_num, $new_plan_title, $new_plan_cateory, 
+                        $new_plan_start_time, $new_plan_end_time, $new_plan_url);
 
                 // コミット処理
                 $db->commit();
                 $insert_result = true; // 登録完了フラグをTRUEにする
+
             } catch (PDOException $e) {
 
                 // ロールバック処理
@@ -150,8 +152,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // ----------ここまでトランザクション処理----------
         }
 
-        // planを削除する場合
         elseif ($sql_order === 'delete_plan') {
+            // planを削除する場合
             $delete_plan_id = $_POST['delete_id'];
             delete_plan($db, $delete_plan_id);
             $dialog = 'プランを削除しました';
@@ -199,7 +201,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 // 参加メンバー情報を取得
 $members_info = get_members_info($db, $travel_id);
-// var_dump($members_info);
 
 // メンバーリスト表示のレイアウトcol数を算出
 $members_num = count($members_info);
