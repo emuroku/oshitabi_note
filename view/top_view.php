@@ -14,6 +14,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
 
+  <!-- OGP -->
+  <meta property="og:url" content="http://oshitabinote.com/top.php" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="推し旅note" />
+  <meta property="og:description" content="旅のしおりnoteを作って仲間とシェアできます" />
+  <meta property="og:site_name" content="推し旅note" />
+  <meta property="og:image" content="http://oshitabinote.com/assets/img/thumbnail/main/thumbnail.png" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <!-- オフライン時作業用 -->
   <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
@@ -66,7 +74,7 @@
       <div class="col-12">
         <h4>MEMBERS</h4>
         <div class="row">
-          <?php 
+          <?php
           foreach ($members_info as $line) {
           ?>
             <div class="col-<?php print($memberslist_col_num); ?>" style="padding: 0;">
@@ -148,11 +156,11 @@
                                                       print(" selected");
                                                     } ?>>O</option>
                                   <option value="AB" <?php if ($line[0]['blood_type'] == "AB") {
-                                                      print(" selected");
-                                                    } ?>>AB</option>
+                                                        print(" selected");
+                                                      } ?>>AB</option>
                                   <option value="不明" <?php if ($line[0]['blood_type'] == "不明") {
-                                                      print(" selected");
-                                                    } ?>>不明</option>
+                                                        print(" selected");
+                                                      } ?>>不明</option>
                                 </select>
                               </div>
                             </div>
@@ -256,9 +264,9 @@
 </div>
 <!-- navigation -->
 <nav class="navbar navbar-expand-sm navbar-light bg-light">
-    <ul class="navbar-nav">
-      <li class="nav-item nav-link">旅程</li>
-    </ul>
+  <ul class="navbar-nav">
+    <li class="nav-item nav-link">旅程</li>
+  </ul>
 </nav>
 
 
@@ -502,7 +510,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">やめる</button>
           <div class="submit"><button class="btn btn-primary" id="btn_submit">追加する</button>
-          <input type="hidden" name="key" value="<?php echo htmlspecialchars($_SESSION['key'], ENT_QUOTES); ?>">
+            <input type="hidden" name="key" value="<?php echo htmlspecialchars($_SESSION['key'], ENT_QUOTES); ?>">
             <input type="hidden" name="sql_order" value="add_plan">
           </div>
       </form>
