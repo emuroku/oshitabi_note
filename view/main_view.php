@@ -16,7 +16,7 @@
     
     <!-- オフライン時作業用 -->
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'top.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/main.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
     
@@ -49,13 +49,11 @@
 
     <!-- container -->
     <div class="container">
-        <div class="jumbotron">
-          <div class="travel_title">
-            <h3>旅のしおりnoteを作成して仲間とシェアできます</h3>
-          </div>
-        </div>  
+          <div class="main_thumbnail">
+            <img src="<?php print(IMG_PATH . 'thumbnail/main/thumbnail.png'); ?>" class="img-fluid">
+          </div>  
         <!-- 旅の追加ボタン -->
-        <div class="addtravel"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_addtravel">作ってみる！</button></div>
+        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#modal_addtravel">作ってみる！</button>
         <!-- 追加Modalフォーム -->
         <div class="modal fade" id="modal_addtravel" tabindex="-1" role="dialog" aria-labelledby="AddTravelModal" aria-hidden="true">
               <div class="modal-dialog" role="document">
