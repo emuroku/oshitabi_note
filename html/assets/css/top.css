@@ -16,7 +16,6 @@
 }
 
 .members{
-    padding: 25px;
     margin-top: 30px;
 }
 .member_top_info{
@@ -35,7 +34,6 @@
     background-position: left top;
     border: 4px solid #F0D0E4; /* 枠線を付加 */
     object-fit: cover; 
-    margin: 10px;
 }
 
 .travel_title{
@@ -77,6 +75,7 @@
 
 .modal-body{
     display: flex;
+    justify-content: space-between;
 }
 
 .modal-footer{
@@ -112,10 +111,6 @@
 button{
     width: 140px;
     margin: 10px;
-}
-
-.submit{
-    margin: 40px;
 }
 
 .copyright{
