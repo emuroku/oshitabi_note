@@ -103,9 +103,10 @@
   </div>
     </div>
 </body>
-<!-- <footer>
+<footer>
     <div class="copyright">
-        <small>@ m610310</small>
+        <p>© 推し旅note</p>
+        <p>By <a href="https://twitter.com/m610310">@m610310</a> <p>
     </div>
-</footer> -->
+</footer>
 </html>
