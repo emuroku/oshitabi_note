@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/bootstrap4/bootstrap.min.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/top.css'); ?>">
     <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/main.css'); ?>">
-    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . '/common.css'); ?>">
+    <link rel="stylesheet" href="<?php print(STYLESHEET_PATH . 'common.css'); ?>">
     
     <!-- Modal -->
     
